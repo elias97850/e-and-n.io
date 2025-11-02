@@ -7,7 +7,9 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <!-- Fuentes existentes + Fuentes nuevas -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <script id="tailwind-config">
         tailwind.config = {
@@ -15,18 +17,74 @@
             theme: {
                 extend: {
                     colors: {
+                        // Colores existentes
                         "primary": "#a65eed",
                         "background-light": "#f7f6f8",
                         "background-dark": "#191121",
+                        // Colores nuevos (fusionados)
+                        "primary-darker": "#9370DB",
+                        "text-light": "#333333",
+                        "text-dark": "#F5F5F5",
+                        "accent-gold": "#F0E68C",
+                        "pastel-purple": "#D1C4E9",
+                        "dark-purple": "#673AB7",
                     },
                     fontFamily: {
-                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"],
+                        // Fuente nueva
+                        "script": ["Dancing Script", "cursive"]
                     },
                     borderRadius: {
                         "DEFAULT": "0.5rem",
                         "lg": "1rem",
                         "xl": "1.5rem",
                         "full": "9999px"
+                    },
+                    // Keyframes nuevos
+                    keyframes: {
+                        fadeIn: {
+                            '0%': {
+                                opacity: 0,
+                                transform: 'translateY(10px)'
+                            },
+                            '100%': {
+                                opacity: 1,
+                                transform: 'translateY(0)'
+                            },
+                        },
+                        fadeInUp: {
+                            '0%': {
+                                opacity: 0,
+                                transform: 'translateY(20px) scale(0.95)'
+                            },
+                            '100%': {
+                                opacity: 1,
+                                transform: 'translateY(0) scale(1)'
+                            },
+                        },
+                        backdropIn: {
+                            '0%': {
+                                opacity: 0
+                            },
+                            '100%': {
+                                opacity: 1
+                            },
+                        },
+                        backgroundPulse: {
+                            '0%, 100%': {
+                                filter: 'brightness(1) blur(6px)'
+                            },
+                            '50%': {
+                                filter: 'brightness(1.1) blur(8px)'
+                            },
+                        },
+                    },
+                    // Animaciones nuevas
+                    animation: {
+                        fadeIn: 'fadeIn 1s ease-out forwards',
+                        fadeInUp: 'fadeInUp 0.5s ease-out forwards',
+                        backdropIn: 'backdropIn 0.5s ease-out forwards',
+                        backgroundPulse: 'backgroundPulse 12s ease-in-out infinite',
                     },
                 },
             },
@@ -36,17 +94,6 @@
         body {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            min-height: max(884px, 100dvh);
-        }
-    </style>
-    <style>
-        body {
-            min-height: max(884px, 100dvh);
-        }
-    </style>
-    <style>
-        body {
-            min-height: max(884px, 100dvh);
         }
     </style>
 
@@ -54,23 +101,19 @@
         .strawberry {
             position: absolute;
             top: -50px;
-            /* Empezar fuera de la pantalla */
             font-size: 2rem;
             user-select: none;
             animation: fall linear;
             z-index: 50;
             opacity: 1;
-            /* Siempre opacidad 100% */
         }
 
         @keyframes fall {
             from {
                 transform: translateY(0vh) rotate(0deg);
             }
-
             to {
                 transform: translateY(105vh) rotate(360deg);
-                /* Caer hasta abajo */
             }
         }
 
@@ -79,29 +122,72 @@
             font-size: 2rem;
             transform-origin: center;
             z-index: 100;
-            /* Iniciar invisible y centrado para la animación fadeIn */
             opacity: 0;
             transform: translate(-50%, -50%) scale(0.5);
-            /* Corregido: centrar desde el inicio */
             animation: fadeIn 0.5s ease-out forwards;
         }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-                /* Corregido: mantener el centrado */
-            }
-        }
+        /* Keyframe 'fadeIn' movido a tailwind.config */
 
-        /* Estilo para el cursor 'grabbing' del modal */
         #heartModalContainer.grabbing {
             cursor: grabbing;
+        }
+    </style>
+    <!-- Estilos del Popup Nuevo -->
+    <style type="text/tailwindcss">
+        :root {
+            --popup-bg-color: #FFFFFF;
+            --popup-text-color: #3C3C5C;
+            --secondary-text-color: #6C6C8E;
+            --highlight-color: #A78BFA;
+            --button-bg-color: #8B5CF6;
+            --button-hover-bg: #7C3AED;
+            --button-text-color: #FFFFFF;
+            --background-image: url('https://source.unsplash.com/random/800x1200/?romantic,abstract,memory,landscape');
+        }
+        .popup-box-bg {
+            background-color: var(--popup-bg-color);
+            color: var(--popup-text-color);
+        }
+        .popup-text-secondary {
+            color: var(--secondary-text-color);
+        }
+        .popup-highlight {
+            color: var(--highlight-color);
         }
     </style>
 </head>
 
 <body class="font-display bg-zinc-100 flex justify-center items-center p-0 sm:p-4">
+
+    <!-- =========== POPUP INICIAL =========== -->
+    <div class="group/design-root fixed inset-0 z-50 flex h-full w-full items-center justify-center p-6 animate-backdropIn" id="welcome-popup">
+        <div class="absolute inset-0 bg-[var(--background-image)] bg-cover bg-center animate-backgroundPulse"></div>
+        <div class="absolute inset-0 bg-black/30 backdrop-blur-md"></div>
+        <div class="relative w-full max-w-sm animate-fadeInUp rounded-xl popup-box-bg shadow-2xl shadow-purple-500/30">
+            <div class="relative flex flex-col items-center justify-center p-8 text-center">
+                <div class="mb-4">
+                    <span class="material-symbols-outlined text-5xl popup-highlight">favorite</span>
+                </div>
+                <h1 class="font-script text-[var(--popup-text-color)] text-4xl font-bold tracking-tight leading-tight">
+                    A Year of Our Beautiful Journey
+                </h1>
+                <p class="popup-text-secondary mt-2 text-base">To my dearest Nurialys Castillo Alers</p>
+                <p class="mt-2 text-lg font-bold text-[#8B5CF6]">
+                    <span>November 23 2025</span>
+                </p>
+                <!-- Botón modificado para usar JS en lugar de href -->
+                <button id="enter-app-button" class="mt-8 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-[var(--button-bg-color)] text-[var(--button-text-color)] text-xl font-bold tracking-[0.015em] shadow-lg shadow-purple-500/30 transition-all duration-200 ease-in-out active:scale-95 hover:bg-[var(--button-hover-bg)]">
+                    <span class="truncate font-bold">TE AMO</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- ======== FIN DEL POPUP INICIAL ======== -->
+
+
+    <!-- ======== CONTENIDO PRINCIPAL DE LA APP ======== -->
+    <!-- Este contenedor ahora se ajustará a 100dvh (altura de la pantalla) -->
     <div class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-background-light group/design-root overflow-x-hidden sm:shadow-2xl sm:rounded-2xl">
         <div class="flex items-center bg-transparent p-4 pb-2 justify-between text-zinc-900">
             <div class="flex w-12 shrink-0 items-center justify-start">
@@ -135,6 +221,7 @@
                 </div>
             </div>
         </div>
+        <!-- Este main ahora scrollea internamente si el contenido es muy largo -->
         <main class="flex flex-1 flex-col overflow-y-auto px-4 pb-4 scrollbar-hide">
             <div class="grid grid-cols-1 gap-6 py-4">
 
@@ -217,8 +304,8 @@
 <div id="heartModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center p-0 sm:p-4" style="display: none; z-index: 100; overflow: hidden;">
         
         
-
-<div id="heartModalContainer" class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-background-light group/design-root overflow-hidden sm:shadow-2xl sm:rounded-2xl" style="cursor: grab;">
+        <!-- Este contenedor también se ajustará a h-dvh, igual que el principal -->
+        <div id="heartModalContainer" class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-background-light group/design-root overflow-x-hidden sm:shadow-2xl sm:rounded-2xl" style="cursor: grab;">
             
             
 
@@ -231,10 +318,26 @@
             </div>
         </div>
     </div>
+    <!-- ====== FIN CONTENIDO PRINCIPAL DE LA APP ====== -->
 
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // === LÓGICA DEL POPUP INICIAL ===
+            const welcomePopup = document.getElementById('welcome-popup');
+            const enterAppButton = document.getElementById('enter-app-button');
+
+            if (welcomePopup && enterAppButton) {
+                enterAppButton.addEventListener('click', () => {
+                    // Animar la salida del popup
+                    welcomePopup.style.animation = 'fadeOut 0.5s ease-out forwards';
+                    // Esperar a que termine la animación para quitarlo
+                    setTimeout(() => {
+                        welcomePopup.style.display = 'none';
+                    }, 500);
+                });
+            }
 
             // === CÓDIGO DE FRESA EXISTENTE ===
             const strawberryButton = document.getElementById('strawberryButton');
@@ -248,6 +351,19 @@
             animationStyleSheetEl.type = 'text/css';
             document.head.appendChild(animationStyleSheetEl);
             const styleSheet = animationStyleSheetEl.sheet;
+
+            // Añadir keyframe para fadeOut del popup
+            try {
+                styleSheet.insertRule(`
+                    @keyframes fadeOut {
+                        from { opacity: 1; }
+                        to { opacity: 0; }
+                    }
+                `, styleSheet.cssRules.length);
+            } catch (e) {
+                console.error("Error inserting CSS rule: ", e);
+            }
+
 
             strawberryButton.addEventListener('click', () => {
                 consecutiveClicks++;
@@ -290,10 +406,10 @@
 
             function createStrawberryHeart() {
                 const heartPattern = [
-                    "    ******         ******",
-                    "    ******         ******",
-                    "  **********     **********",
-                    "  **********     **********",
+                    "    ****** ******",
+                    "    ****** ******",
+                    "  ********** **********",
+                    "  ********** **********",
                     " ************* *************",
                     "*****************************",
                     "*****************************",
@@ -362,20 +478,25 @@
 
                     const keyframesName = `explode-strawberry-${index}`;
 
-                    styleSheet.insertRule(`
-                        @keyframes ${keyframesName} {
-                            from {
-                                transform: translate(-50%, -50%) scale(1);
-                                opacity: 1;
-                                filter: blur(0);
+                    try {
+                        styleSheet.insertRule(`
+                            @keyframes ${keyframesName} {
+                                from {
+                                    transform: translate(-50%, -50%) scale(1);
+                                    opacity: 1;
+                                    filter: blur(0);
+                                }
+                                to {
+                                    transform: translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px)) rotate(${rotation}deg) scale(1);
+                                    opacity: 0;
+                                    filter: blur(2px);
+                                }
                             }
-                            to {
-                                transform: translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px)) rotate(${rotation}deg) scale(1);
-                                opacity: 0;
-                                filter: blur(2px);
-                            }
-                        }
-                    `, styleSheet.cssRules.length);
+                        `, styleSheet.cssRules.length);
+                    } catch (e) {
+                        console.error("Error inserting CSS rule: ", e);
+                    }
+
 
                     strawberry.style.animation = `${keyframesName} 1.5s ease-out forwards`;
 
@@ -384,7 +505,11 @@
                         // Limpiar la regla de keyframes para evitar que se acumulen
                         for (let i = 0; i < styleSheet.cssRules.length; i++) {
                             if (styleSheet.cssRules[i] && styleSheet.cssRules[i].name === keyframesName) {
-                                styleSheet.deleteRule(i);
+                                try {
+                                    styleSheet.deleteRule(i);
+                                } catch (e) {
+                                    console.error("Error deleting CSS rule: ", e);
+                                }
                                 break;
                             }
                         }
@@ -644,9 +769,4 @@
 
 </body>
 </html>
-
-
-
-
-
 
