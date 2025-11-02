@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <script id="tailwind-config">
     tailwind.config = {
-      darkMode: "class",
+      // darkMode: "class", // Eliminado para forzar light mode
       theme: {
         extend: {
           colors: {
@@ -48,8 +48,9 @@
         min-height: max(884px, 100dvh);
       }
   </style>
-    <!-- Estilos para la lluvia de fresas -->
-    <style>
+    
+
+<style>
         .strawberry {
             position: absolute;
             top: -50px; /* Empezar fuera de la pantalla */
@@ -57,6 +58,7 @@
             user-select: none;
             animation: fall linear;
             z-index: 50;
+            opacity: 1; /* Siempre opacidad 100% */
         }
 
         @keyframes fall {
@@ -67,11 +69,32 @@
                 transform: translateY(105vh) rotate(360deg); /* Caer hasta abajo */
             }
         }
+
+        .strawberry-heart-piece {
+            position: absolute;
+            font-size: 2rem;
+            transform-origin: center;
+            z-index: 100;
+            /* Iniciar invisible y centrado para la animación fadeIn */
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5); /* Corregido: centrar desde el inicio */
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1); /* Corregido: mantener el centrado */
+            }
+        }
+
+        /* Animación de explosión dinámica, se genera con JS */
+        /* ... */
     </style>
   </head>
-<body class="font-display bg-zinc-100 dark:bg-zinc-900 flex justify-center items-center p-0 sm:p-4">
-<div class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden sm:shadow-2xl sm:rounded-2xl">
-<div class="flex items-center bg-transparent p-4 pb-2 justify-between text-zinc-900 dark:text-zinc-100">
+<body class="font-display bg-zinc-100 flex justify-center items-center p-0 sm:p-4">
+<div class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-background-light group/design-root overflow-x-hidden sm:shadow-2xl sm:rounded-2xl">
+<div class="flex items-center bg-transparent p-4 pb-2 justify-between text-zinc-900">
 <div class="flex w-12 shrink-0 items-center justify-start">
 <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-primary/10 transition-colors">
 <span class="text-2xl">❤️</span>
@@ -84,141 +107,268 @@
 </button>
 </div>
 </div>
-<div class="relative mb-6 mx-4 rounded-xl border-4 border-primary/50 bg-white dark:bg-zinc-800 p-3 shadow-lg flex flex-col items-center justify-center text-center text-zinc-900 dark:text-white">
-<div class="absolute inset-0 scale-105 bg-primary/20 rounded-xl blur-2xl dark:bg-primary/30 opacity-60"></div>
+<div class="relative mb-6 mx-4 rounded-xl border-4 border-primary/50 bg-white p-3 shadow-lg flex flex-col items-center justify-center text-center text-zinc-900">
+<div class="absolute inset-0 scale-105 bg-primary/20 rounded-xl blur-2xl opacity-60"></div>
 <div class="relative z-10 w-full flex flex-col items-center justify-center">
 <p class="text-sm font-medium text-primary mb-1">Our next anniversary</p>
-<div class="flex items-baseline justify-center gap-x-1.5 text-zinc-900 dark:text-white flex-wrap px-2">
-<span class="text-2xl font-bold tracking-tighter">245</span><span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">d</span>
-<span class="text-2xl font-bold tracking-tighter">10</span><span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">h</span>
-<span class="text-2xl font-bold tracking-tighter">32</span><span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">m</span>
-<span class="text-2xl font-bold tracking-tighter">18</span><span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">s</span>
+<div class="flex items-baseline justify-center gap-x-1.5 text-zinc-900 flex-wrap px-2">
+<span class="text-2xl font-bold tracking-tighter">245</span><span class="text-sm font-medium text-zinc-500">d</span>
+<span class="text-2xl font-bold tracking-tighter">10</span><span class="text-sm font-medium text-zinc-500">h</span>
+<span class="text-2xl font-bold tracking-tighter">32</span><span class="text-sm font-medium text-zinc-500">m</span>
+<span class="text-2xl font-bold tracking-tighter">18</span><span class="text-sm font-medium text-zinc-500">s</span>
 </div>
-<div class="mt-3 w-full bg-primary/10 dark:bg-primary/20 rounded-md py-2 px-4 text-sm text-zinc-700 dark:text-zinc-300">
+<div class="mt-3 w-full bg-primary/10 rounded-md py-2 px-4 text-sm text-zinc-700">
 <p>Celebrating every precious moment.</p>
 </div>
 </div>
 </div>
 <main class="flex flex-1 flex-col overflow-y-auto px-4 pb-4 scrollbar-hide">
 <div class="grid grid-cols-1 gap-6 py-4">
-<!-- Card 1: Our First Anniversary! -->
-<div class="w-full bg-white dark:bg-zinc-800 shadow-md rounded-lg overflow-hidden">
-    <div class="w-full h-32 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+
+<div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
         <span class="material-symbols-outlined text-4xl">calendar_today</span>
     </div>
     <div class="p-4">
-        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Nov 23, 2023</p>
-        <h3 class="font-semibold text-zinc-900 dark:text-white">Our First Anniversary!</h3>
-        <p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">A sweet day marking the beginning of our journey. Remember the cake and the laughter!</p>
+        <p class="text-xs text-zinc-500 mb-1">Nov 23, 2023</p>
+        <h3 class="font-semibold text-zinc-900">Our First Anniversary!</h3>
+        <p class="text-sm text-zinc-700 mt-2">A sweet day marking the beginning of our journey. Remember the cake and the laughter!</p>
     </div>
 </div>
-<!-- Card 2: Weekend Getaway -->
-<div class="w-full bg-white dark:bg-zinc-800 shadow-md rounded-lg overflow-hidden">
-    <div class="w-full h-32 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+
+<div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
         <span class="material-symbols-outlined text-4xl">emoji_events</span>
     </div>
     <div class="p-4">
-        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Oct 15, 2023</p>
-        <h3 class="font-semibold text-zinc-900 dark:text-white">Weekend Getaway</h3>
-        <p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">Explored new places and made unforgettable memories. The sunrise hike was amazing!</p>
+        <p class="text-xs text-zinc-500 mb-1">Oct 15, 2023</p>
+        <h3 class="font-semibold text-zinc-900">Weekend Getaway</h3>
+        <p class="text-sm text-zinc-700 mt-2">Explored new places and made unforgettable memories. The sunrise hike was amazing!</p>
     </div>
 </div>
-<!-- Card 3: First Home-cooked Dinner -->
-<div class="w-full bg-white dark:bg-zinc-800 shadow-md rounded-lg overflow-hidden">
-    <div class="w-full h-32 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+
+<div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
         <span class="material-symbols-outlined text-4xl">favorite</span>
     </div>
     <div class="p-4">
-        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Aug 01, 2023</p>
-        <h3 class="font-semibold text-zinc-900 dark:text-white">First Home-cooked Dinner</h3>
-        <p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">Enjoyed a cozy evening with our favorite dishes. Your lasagna was incredible!</p>
+        <p class="text-xs text-zinc-500 mb-1">Aug 01, 2023</p>
+        <h3 class="font-semibold text-zinc-900">First Home-cooked Dinner</h3>
+        <p class="text-sm text-zinc-700 mt-2">Enjoyed a cozy evening with our favorite dishes. Your lasagna was incredible!</p>
     </div>
 </div>
-<!-- Card 4: Surprise Gift -->
-<div class="w-full bg-white dark:bg-zinc-800 shadow-md rounded-lg overflow-hidden">
-    <div class="w-full h-32 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+
+<div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
         <span class="material-symbols-outlined text-4xl">redeem</span>
     </div>
     <div class="p-4">
-        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Jun 20, 2023</p>
-        <h3 class="font-semibold text-zinc-900 dark:text-white">Surprise Gift</h3>
-        <p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">Received the most thoughtful present! I still cherish it every day.</p>
+        <p class="text-xs text-zinc-500 mb-1">Jun 20, 2023</p>
+        <h3 class="font-semibold text-zinc-900">Surprise Gift</h3>
+        <p class="text-sm text-zinc-700 mt-2">Received the most thoughtful present! I still cherish it every day.</p>
     </div>
 </div>
-<!-- Card 5: Spring Picnic -->
-<div class="w-full bg-white dark:bg-zinc-800 shadow-md rounded-lg overflow-hidden">
-    <div class="w-full h-32 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+
+<div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
         <span class="material-symbols-outlined text-4xl">park</span>
     </div>
     <div class="p-4">
-        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Apr 10, 2023</p>
-        <h3 class="font-semibold text-zinc-900 dark:text-white">Spring Picnic</h3>
-        <p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">A perfect day at the park, full of laughter and sunshine. Remember the frisbee?</p>
+        <p class="text-xs text-zinc-500 mb-1">Apr 10, 2023</p>
+        <h3 class="font-semibold text-zinc-900">Spring Picnic</h3>
+        <p class="text-sm text-zinc-700 mt-2">A perfect day at the park, full of laughter and sunshine. Remember the frisbee?</p>
     </div>
 </div>
-<!-- Card 6: Valentine's Day Date -->
-<div class="w-full bg-white dark:bg-zinc-800 shadow-md rounded-lg overflow-hidden">
-    <div class="w-full h-32 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+
+<div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
         <span class="material-symbols-outlined text-4xl">celebration</span>
     </div>
     <div class="p-4">
-        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Feb 14, 2023</p>
-        <h3 class="font-semibold text-zinc-900 dark:text-white">Valentine's Day Date</h3>
-        <p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">Romantic dinner and sweet conversations. The best Valentine's ever!</p>
+        <p class="text-xs text-zinc-500 mb-1">Feb 14, 2023</p>
+        <h3 class="font-semibold text-zinc-900">Valentine's Day Date</h3>
+        <p class="text-sm text-zinc-700 mt-2">Romantic dinner and sweet conversations. The best Valentine's ever!</p>
     </div>
 </div>
 </div>
 </main>
 
-<!-- Contenedor para la lluvia de fresas -->
+
 <div id="rain-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+<div id="heart-container" class="absolute inset-0 flex items-center justify-center pointer-events-none"></div>
 
 </div>
 
-<!-- Script para la lluvia de fresas -->
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const strawberryButton = document.getElementById('strawberryButton');
         const rainContainer = document.getElementById('rain-container');
+        const heartContainer = document.getElementById('heart-container');
+        
+        let consecutiveClicks = 0;
+        let clickTimer = null;
+
+        const animationStyleSheetEl = document.createElement('style');
+        animationStyleSheetEl.type = 'text/css';
+        document.head.appendChild(animationStyleSheetEl);
+        const styleSheet = animationStyleSheetEl.sheet;
 
         strawberryButton.addEventListener('click', () => {
-            // Crear varias fresas a la vez
-            for (let i = 0; i < 25; i++) {
-                createStrawberry();
+            consecutiveClicks++;
+            if (clickTimer) clearTimeout(clickTimer);
+
+            if (consecutiveClicks === 10) {
+                // rainContainer.innerHTML = ''; // No limpiar las fresas
+                heartContainer.innerHTML = '';
+                createStrawberryHeart();
+                consecutiveClicks = 0;
+            } else {
+                for (let i = 0; i < 15; i++) {
+                    createFallingStrawberry();
+                }
             }
+
+            clickTimer = setTimeout(() => {
+                consecutiveClicks = 0;
+            }, 2000);
         });
 
-        function createStrawberry() {
+        function createFallingStrawberry() {
             const strawberry = document.createElement('div');
             strawberry.classList.add('strawberry');
             strawberry.innerText = '🍓';
             
-            // Posición horizontal aleatoria dentro del contenedor
             strawberry.style.left = `${Math.random() * 100}%`;
-            
-            // Duración de caída aleatoria (entre 1 y 3 segundos) - MÁS RÁPIDO
             const duration = Math.random() * 2 + 1;
             strawberry.style.animationDuration = `${duration}s`;
-            
-            // Retraso de inicio aleatorio
-            strawberry.style.animationDelay = `${Math.random() * 1}s`; // Reducido también el delay
-            
-            // Tamaño aleatorio
+            strawberry.style.animationDelay = `${Math.random() * 1}s`;
             strawberry.style.fontSize = `${Math.random() * 1.5 + 1}rem`;
-            // Opacidad 100%
             strawberry.style.opacity = `1`;
 
             rainContainer.appendChild(strawberry);
 
-            // Limpiar la fresa del DOM después de que termine la animación
-            // (duración + retraso max) * 1000ms
             setTimeout(() => {
                 strawberry.remove();
             }, (duration + 1) * 1000); 
+        }
+
+        function createStrawberryHeart() {
+            const heartPattern = [
+                "    ******         ******",
+                "    ******         ******",
+                "  **********     **********",
+                "  **********     **********",
+                " ************* *************",
+                " ************* *************",
+                "*****************************",
+                "*****************************",
+                "*****************************",
+                "*****************************",
+                "*****************************",
+                "*****************************",
+                " ***************************",
+                " ***************************",
+                "   ***********************",
+                "   ***********************",
+                "     *******************",
+                "     *******************",
+                "       ***************",
+                "       ***************",
+                "         ***********",
+                "         ***********",
+                "           *******",
+                "           *******",
+                "             ***",
+                "             ***",
+                "              *",
+                "              *"
+            ];
+            
+            const scale = 15; // Ajustar la escala general del corazón (tamaño de la celda)
+            const strawberrySize = 1.5; // Tamaño del emoji en rem
+            const delayBetweenFresas = 5; // ms para dibujar el corazón más rápido
+
+            // Corregido: Calcular el ancho máximo y el total de estrellas UNA VEZ
+            const maxWidth = heartPattern.reduce((max, r) => Math.max(max, r.length), 0);
+            const totalStars = heartPattern.join('').replace(/ /g, '').length;
+            let starsPlaced = 0;
+
+            heartPattern.forEach((row, rowIndex) => {
+                // Corregido: Iterar sobre la fila original, no la "recortada"
+                for (let i = 0; i < row.length; i++) {
+                    if (row[i] === '*') {
+                        setTimeout(() => {
+                            const strawberry = document.createElement('div');
+                            strawberry.classList.add('strawberry-heart-piece');
+                            strawberry.innerText = '🍓';
+                            
+                            // Corregido: Calcular offset basado en el ancho MÁXIMO para centrar
+                            const xOffset = (i - (maxWidth - 1) / 2) * scale;
+                            const yOffset = (rowIndex - (heartPattern.length - 1) / 2) * scale;
+
+                            strawberry.style.left = `calc(50% + ${xOffset}px)`;
+                            strawberry.style.top = `calc(50% + ${yOffset}px)`;
+                            strawberry.style.fontSize = `${strawberrySize}rem`;
+                            heartContainer.appendChild(strawberry);
+
+                            starsPlaced++; // Incrementar el contador de estrellas puestas
+                            
+                            // Corregido: Comprobar si esta es la ÚLTIMA estrella
+                            if (starsPlaced === totalStars) {
+                                setTimeout(explodeHeart, 500); // Esperar un momento antes de explotar
+                            }
+                        }, starsPlaced * delayBetweenFresas); // Usar el contador para el retraso
+                    }
+                }
+            });
+        }
+
+        function explodeHeart() {
+            const strawberries = heartContainer.querySelectorAll('.strawberry-heart-piece');
+            strawberries.forEach((strawberry, index) => {
+                // ¡CORRECCIÓN! Estas variables faltaban
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 200 + 100;
+                const translateX = distance * Math.cos(angle);
+                const translateY = distance * Math.sin(angle);
+                const rotation = Math.random() * 720 - 360;
+
+                const keyframesName = `explode-strawberry-${index}`;
+                
+                // Corregido: Añadir 'from' y 'to' para asegurar una transición suave
+                styleSheet.insertRule(`
+                    @keyframes ${keyframesName} {
+                        from {
+                            transform: translate(-50%, -50%) scale(1);
+                            opacity: 1;
+                            filter: blur(0);
+                        }
+                        to {
+                            transform: translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px)) rotate(${rotation}deg) scale(1);
+                            opacity: 0;
+                            filter: blur(2px);
+                        }
+                    }
+                `, styleSheet.cssRules.length);
+
+                // ¡CORRECCIÓN! Esta línea faltaba
+                strawberry.style.animation = `${keyframesName} 1.5s ease-out forwards`;
+                
+                setTimeout(() => {
+                    strawberry.remove();
+                    // Limpiar la regla de keyframes para evitar que se acumulen
+                    for (let i = 0; i < styleSheet.cssRules.length; i++) {
+                        if (styleSheet.cssRules[i] && styleSheet.cssRules[i].name === keyframesName) {
+                            styleSheet.deleteRule(i);
+                            break;
+                        }
+                    }
+                }, 1500);
+            });
         }
     });
 </script>
 
 </body></html>
-
 
