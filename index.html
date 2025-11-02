@@ -105,15 +105,17 @@
     <div class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-background-light group/design-root overflow-x-hidden sm:shadow-2xl sm:rounded-2xl">
         <div class="flex items-center bg-transparent p-4 pb-2 justify-between text-zinc-900">
             <div class="flex w-12 shrink-0 items-center justify-start">
-                <!-- BOTÓN DEL CORAZÓN 3D (ID AÑADIDO) -->
-                <button id="heartButton" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-primary/10 transition-colors">
+                
+
+<button id="heartButton" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-primary/10 transition-colors">
                     <span class="text-2xl">❤️</span>
                 </button>
             </div>
             <h2 class="text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">One Thousand More</h2>
             <div class="flex w-12 items-center justify-end">
-                <!-- BOTÓN DE FRESA (ID EXISTENTE) -->
-                <button id="strawberryButton" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-primary/10 transition-colors">
+                
+
+<button id="strawberryButton" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-primary/10 transition-colors">
                     <span class="text-2xl">🍓</span>
                 </button>
             </div>
@@ -210,18 +212,22 @@
 
     </div>
 
-    <!-- MODAL DEL CORAZÓN 3D (MODIFICADO) -->
-    <div id="heartModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center p-0 sm:p-4" style="display: none; z-index: 100; overflow: hidden;">
+    
+
+<div id="heartModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center p-0 sm:p-4" style="display: none; z-index: 100; overflow: hidden;">
         
-        <!-- Contenedor con apariencia de celular (FONDO CAMBIADO) -->
-        <div id="heartModalContainer" class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-background-light group/design-root overflow-hidden sm:shadow-2xl sm:rounded-2xl" style="cursor: grab;">
+        
+
+<div id="heartModalContainer" class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-background-light group/design-root overflow-hidden sm:shadow-2xl sm:rounded-2xl" style="cursor: grab;">
             
-            <!-- Botón de cerrar (ajustado al nuevo contenedor y fondo) -->
-            <button id="closeHeartModal" class="absolute top-4 right-4 text-zinc-900 text-5xl font-mono" style="z-index: 101; line-height: 1; -webkit-user-select: none; user-select: none; opacity: 0.7;">&times;</button>
             
-            <!-- El 'pre' tag ahora está centrado dentro del contenedor del celular (COLOR CAMBIADO) -->
-            <div class="flex-1 grid place-items-center overflow-hidden">
-                <pre id="heart-display" style="font-family: 'Courier New', Courier, monospace; font-size: 10px; line-height: 1.0; text-align: center; color: #a65eed; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;"></pre>
+
+<button id="closeHeartModal" class="absolute top-4 right-4 text-zinc-900 text-5xl font-mono" style="z-index: 101; line-height: 1; -webkit-user-select: none; user-select: none; opacity: 0.7;">&times;</button>
+            
+            
+
+<div class="flex-1 grid place-items-center overflow-hidden">
+                <pre id="heart-display" style="font-family: 'Courier New', Courier, monospace; font-size: 12px; font-weight: 900; line-height: 1.0; text-align: center; color: #a65eed; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;"></pre>
             </div>
         </div>
     </div>
@@ -284,10 +290,10 @@
 
             function createStrawberryHeart() {
                 const heartPattern = [
-                    "    ******         ******",
-                    "    ******         ******",
-                    "  **********     **********",
-                    "  **********     **********",
+                    "    ****** ******",
+                    "    ****** ******",
+                    "  ********** **********",
+                    "  ********** **********",
                     " ************* *************",
                     "*****************************",
                     "*****************************",
@@ -424,8 +430,8 @@
                  * Inicializa (o reinicializa) los buffers con el tamaño del modal.
                  */
                 function setupBuffers() {
-                    const charWidth = 6; // Ancho de caracter (aprox de Courier 10px)
-                    const charHeight = 10; // Alto de caracter (del font-size 10px)
+                    const charWidth = 7; // Ancho de caracter (aprox de Courier 12px 900)
+                    const charHeight = 12; // Alto de caracter (del font-size 12px)
 
                     // Usar las dimensiones del modal, no de la ventana
                     SCREEN_WIDTH = Math.floor(heartModalContainer.clientWidth / charWidth); // CAMBIADO
@@ -462,7 +468,7 @@
                     for (let u = 0; u < 2 * PI; u += 0.04) { // Incremento 0.04
                         for (let v = 0; v < PI; v += 0.04) { // Incremento 0.04
 
-                            // Ecuaciones paramétricas del corazón
+                            // Ecuaciones paramétricas del corazón (directo de tu código)
                             let x = sin(v) * (15 * sin(u) - 4 * sin(3 * u));
                             let y = 8 * cos(v);
                             let z = sin(v) * (15 * cos(u) - 5 * cos(2 * u) - 2 * cos(3 * u) - cos(4 * u));
@@ -478,14 +484,14 @@
                             let z_rot = y1 * sinA + z1 * cosA;
 
                             // Proyección
-                            let z_offset = 70;
+                            let z_offset = 40; // Reducido de 50 para "zoom in" más
                             let ooz = 1 / (z_rot + z_offset); // ooz = "one over z"
 
                             // Ajustamos la escala de proyección a las dimensiones de la pantalla
                             let xp = Math.floor(SCREEN_WIDTH / 2 + x_rot * ooz * SCREEN_WIDTH * 0.5);
                             let yp = Math.floor(SCREEN_HEIGHT / 2 - y_rot * ooz * SCREEN_HEIGHT * 0.5);
 
-                            // Calcular normales
+                            // Calcular normales (directo de tu código)
                             let nx = sin(v) * (15 * cos(u) - 4 * cos(3 * u));
                             let ny = 8 * -sin(v) * sin(v);
                             let nz = cos(v) * (15 * sin(u) - 5 * sin(2 * u) - 2 * sin(3 * u) - sin(4 * u));
@@ -538,8 +544,8 @@
                 function heartLoop() {
                     // Solo girar automáticamente si no estamos arrastrando
                     if (!heart_isDragging) {
-                        heart_angleA += 0.04; // Más lento
-                        heart_angleB += 0.015; // Más lento
+                        heart_angleA += 0.02; // Reducido de 0.04
+                        heart_angleB += 0.0075; // Reducido de 0.015
                     }
 
                     // Renderizar el frame en los buffers
@@ -638,4 +644,9 @@
 
 </body>
 </html>
+
+
+
+
+
 
