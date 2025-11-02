@@ -213,15 +213,15 @@
     <!-- MODAL DEL CORAZÓN 3D (MODIFICADO) -->
     <div id="heartModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center p-0 sm:p-4" style="display: none; z-index: 100; overflow: hidden;">
         
-        <!-- Contenedor con apariencia de celular -->
-        <div id="heartModalContainer" class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-black group/design-root overflow-hidden sm:shadow-2xl sm:rounded-2xl" style="cursor: grab;">
+        <!-- Contenedor con apariencia de celular (FONDO CAMBIADO) -->
+        <div id="heartModalContainer" class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-background-light group/design-root overflow-hidden sm:shadow-2xl sm:rounded-2xl" style="cursor: grab;">
             
-            <!-- Botón de cerrar (ajustado al nuevo contenedor) -->
-            <button id="closeHeartModal" class="absolute top-4 right-4 text-white text-5xl font-mono" style="z-index: 101; line-height: 1; -webkit-user-select: none; user-select: none; opacity: 0.7; mix-blend-mode: difference;">&times;</button>
+            <!-- Botón de cerrar (ajustado al nuevo contenedor y fondo) -->
+            <button id="closeHeartModal" class="absolute top-4 right-4 text-zinc-900 text-5xl font-mono" style="z-index: 101; line-height: 1; -webkit-user-select: none; user-select: none; opacity: 0.7;">&times;</button>
             
-            <!-- El 'pre' tag ahora está centrado dentro del contenedor del celular -->
+            <!-- El 'pre' tag ahora está centrado dentro del contenedor del celular (COLOR CAMBIADO) -->
             <div class="flex-1 grid place-items-center overflow-hidden">
-                <pre id="heart-display" style="font-family: 'Courier New', Courier, monospace; font-size: 10px; line-height: 1.0; text-align: center; color: #ff9999; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;"></pre>
+                <pre id="heart-display" style="font-family: 'Courier New', Courier, monospace; font-size: 10px; line-height: 1.0; text-align: center; color: #a65eed; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;"></pre>
             </div>
         </div>
     </div>
@@ -284,34 +284,30 @@
 
             function createStrawberryHeart() {
                 const heartPattern = [
-                    "  ****** ******",
-                    "  ****** ******",
-                    " ********** **********",
-                    " ********** **********",
-                    "************* *************",
-                    "************* *************",
-                    "*****************************",
-                    "*****************************",
+                    "    ******         ******",
+                    "    ******         ******",
+                    "  **********     **********",
+                    "  **********     **********",
+                    " ************* *************",
                     "*****************************",
                     "*****************************",
                     "*****************************",
                     "*****************************",
                     " ***************************",
                     " ***************************",
-                    "  ***********************",
-                    "  ***********************",
-                    "   *******************",
-                    "   *******************",
-                    "    ***************",
-                    "    ***************",
-                    "     ***********",
-                    "     ***********",
-                    "      *******",
-                    "      *******",
-                    "       ***",
-                    "       ***",
-                    "        *",
-                    "        *"
+                    "   ***********************",
+                    "   ***********************",
+                    "     *******************",
+                    "     *******************",
+                    "       ***************",
+                    "       ***************",
+                    "         ***********",
+                    "         ***********",
+                    "           *******",
+                    "           *******",
+                    "             ***",
+                    "             ***",
+                    "              *"
                 ];
 
                 const scale = 15; // Ajustar la escala general del corazón (tamaño de la celda)
@@ -616,16 +612,19 @@
                     heartModalContainer.classList.remove('grabbing'); // CAMBIADO
                 });
 
+                /*
+                // Este listener parece redundante con el de 'heartModalContainer'
                 heartModal.addEventListener('mouseleave', (e) => {
                     // Detener el arrastre si el mouse sale del modal
                     heart_isDragging = false;
                     heartModal.classList.remove('grabbing');
                 });
+                */
 
 
                 // Listener para redimensionar la ventana
                 window.addEventListener('resize', () => {
-                    if (heartModal.style.display === 'grid') {
+                    if (heartModal.style.display === 'flex') { // CAMBIADO
                         // Solo recalcular si el modal está visible
                         setupBuffers();
                     }
