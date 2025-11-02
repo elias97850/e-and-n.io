@@ -1,487 +1,224 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Player 2</title>
-    
-    <!-- Import the pixel art font "Press Start 2P" -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our First Year</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#a65eed",
+            "background-light": "#f7f6f8",
+            "background-dark": "#191121",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+  </style>
+    <!-- Estilos para la lluvia de fresas -->
     <style>
-        /* This CSS creates the pixel art look and feel */
-        
-        :root {
-            /* 1. CAMBIO: Fondo ahora es morado */
-            --bg-color: #dcd0ff; /* Soft purple background */
-            --main-text: #4a2d3c; /* Dark purple/brown text */
-            --window-bg: #fff;  /* White for the 'window' */
-            --accent-yellow: #ffd166;
-            --accent-green: #e0f0e3;
-            --accent-red: #ff8c8c;
-            --border-color: #4a2d3c;
-            --trophy-gold: #ffd166;
-            --trophy-gold-light: #ffec99;
-        }
-
-        /* Basic setup */
-        body {
-            background-color: var(--bg-color);
-            font-family: 'Press Start 2P', cursive; /* The pixel font */
-            color: var(--main-text);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 1.5rem;
-            box-sizing: border-box;
-            
-            /* 2. CAMBIO: Puntero 8-bit */
-            /* Este es un cursor de mano pixelado (Data URI) */
-            cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAD5JREFUOI1jYCARZ+b/HM2gBGAiBgwEjGAgCGAiCGCGfREjJgqYggH5fQyTDAxAGMAQOQ1GgA0yGgA26hVTblQzDgAAAABJRU5ErkJggg=='), auto;
-            
-            /* These properties make sure any images scaled up look pixelated, not blurry */
-            image-rendering: -moz-crisp-edges;
-            image-rendering: -webkit-crisp-edges;
-            image-rendering: pixelated;
-            image-rendering: crisp-edges;
-            overflow-x: hidden; /* Previene scroll horizontal por la lluvia */
-        }
-
-        /* 3. NUEVO: Botón de lluvia de fresas */
-        #rain-button {
-            position: fixed; /* Fijo en la pantalla */
-            top: 1.5rem;
-            right: 1.5rem;
-            font-size: 1.5rem; /* Emoji más grande */
-            padding: 0.5rem 0.8rem;
-            z-index: 100;
-            background-color: var(--accent-red);
-        }
-
-        /* This is the main "window" container */
-        .container {
-            width: 100%;
-            max-width: 600px; /* Keeps it from getting too wide on desktop */
-            background-color: var(--window-bg);
-            padding: 1rem 1.5rem;
-            
-            /* This creates the 8-bit border and shadow */
-            border: 4px solid var(--border-color);
-            box-shadow: 4px 4px 0px var(--border-color); /* 8-bit style drop shadow */
-            
-            /* NO rounded corners for pixel art! */
-            border-radius: 0; 
-            position: relative; /* Para la lluvia de fresas */
-            z-index: 10;
-        }
-
-        h1 {
-            font-size: 1.1rem; /* Adjusted for new text */
-            text-align: center;
-            margin-top: 0.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        h2 {
-            font-size: 1rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        p {
-            font-size: 0.8rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        /* A container for our button */
-        .button-container {
-            text-align: center;
-            padding-bottom: 1rem;
-        }
-
-        /* The pixel art button style */
-        .pixel-button {
-            font-family: 'Press Start 2P', cursive; /* Make sure button uses the font */
-            font-size: 1rem;
-            color: var(--main-text);
-            background-color: var(--accent-yellow);
-            
-            padding: 0.8rem 1.2rem;
-            text-decoration: none;
-            display: inline-block;
-            cursor: pointer;
-
-            /* Pixel border and shadow */
-            border: 4px solid var(--border-color);
-            box-shadow: 2px 2px 0px var(--border-color);
-            
-            /* This makes the button "press" down when clicked */
-            transition: transform 0.05s linear, box-shadow 0.05s linear;
-        }
-
-        .pixel-button:active {
-            /* Move the button down and right, and remove the shadow */
-            transform: translate(2px, 2px);
-            box-shadow: none;
-        }
-
-        /* Disable buttons during typing animation */
-        .pixel-button:disabled {
-            background-color: #ccc;
-            color: #999;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: 2px 2px 0px var(--border-color);
-        }
-        
-        /* The pop-up secret message box */
-        #secret-message {
-            display: none; /* Hidden by default */
-            background-color: var(--accent-green);
-            margin: 1rem 0;
-            padding: 1.2rem;
-            
-            /* It gets its own pixel border */
-            border: 4px solid var(--border-color);
-            box-shadow: 4px 4px 0px var(--border-color);
-            position: relative;
-        }
-
-        #message-text {
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            /* Give it a min-height so it doesn't "jump" when text is cleared */
-            min-height: 3.5rem; 
-        }
-        
-        /* 4. CAMBIO: Estilo para el botón de acción del popup */
-        #popup-action-button {
-            background-color: var(--accent-red); /* Red for closing/loving */
-            font-size: 0.8rem;
-            padding: 0.5rem 0.8rem;
-        }
-        
-        /* --- NEW: Pulsing heart animation --- */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        /* This is an inline SVG pixel art heart */
-        .heart-icon {
-            display: inline-block;
-            width: 1.2rem; /* Matches the text size */
-            height: 1.2rem;
-            vertical-align: middle;
-            margin: 0 0.25rem; /* Reduced margin */
-            
-            /* This SVG creates a 13x13 pixel heart */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13' shape-rendering='crispEdges'%3E%3Cpath fill='%23ff4757' d='M0 3h1v1H0zM1 1h1v1H1zM1 2h1v1H1zM1 3h1v1H1zM1 4h1v1H1zM2 0h1v1H2zM2 1h1v1H2zM2 2h1v1H2zM2 3h1v1H2zM2 4h1v1H2zM2 5h1v1H2zM3 0h1v1H3zM3 1h1v1H3zM3 2h1v1H3zM3 3h1v1H3zM3 4h1v1H3zM3 5h1v1H3zM3 6h1v1H3zM4 1h1v1H4zM4 2h1v1H4zM4 3h1v1H4zM4 4h1v1H4zM4 5h1v1H4zM4 6h1v1H4zM4 7h1v1H4zM5 2h1v1H5zM5 3h1v1H5zM5 4h1v1H5zM5 5h1v1H5zM5 6h1v1H5zM5 7h1v1H5zM5 8h1v1H5zM6 2h1v1H6zM6 3h1v1H6zM6 4h1v1H6zM6 5h1v1H6zM6 6h1v1H6zM6 7h1v1H6zM6 8h1v1H6zM7 2h1v1H7zM7 3h1v1H7zM7 4h1v1H7zM7 5h1v1H7zM7 6h1v1H7zM7 7h1v1H7zM7 8h1v1H7zM8 1h1v1H8zM8 2h1v1H8zM8 3h1v1H8zM8 4h1v1H8zM8 5h1v1H8zM8 6h1v1H88zM8 7h1v1H8zM9 0h1v1H9zM9 1h1v1H9zM9 2h1v1H9zM9 3h1v1H9zM9 4h1v1H9zM9 5h1v1H9zM9 6h1v1H9zM10 0h1v1H10zM10 1h1v1H10zM10 2h1v1H10zM10 3h1v1H10zM10 4h1v1H10zM10 5h1v1H10zM11 1h1v1H11zM11 2h1v1H11zM11 3h1v1H11zM11 4h1v1H11zM12 3h1v1H12z'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-
-            /* Apply the animation! */
-            animation: pulse 1.5s infinite ease-in-out;
-            transform-origin: center;
-        }
-
-        /* --- NEW: Achievement List Styles --- */
-
-        .trophy-icon {
-            display: inline-block;
-            width: 1.2rem;
-            height: 1.2rem;
-            vertical-align: middle;
-            margin-right: 0.75rem;
-            flex-shrink: 0; /* Prevents icon from shrinking */
-            
-            /* This is a 13x13 pixel trophy SVG */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13' shape-rendering='crispEdges'%3E%3Cpath fill='var(--border-color)' d='M4 11h5v2H4zM5 9h3v2H5zM3 2h7v1H3zM2 3h9v1H2zM1 4h11v3H1z'/%3E%3Cpath fill='var(--trophy-gold)' d='M3 0h7v2H3zM2 2h2v1H2zM9 2h2v1H9zM2 5h9v2H2z'/%3E%3Cpath fill='var(--trophy-gold-light)' d='M4 1h5v1H4zM3 3h7v1H3z'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        .achievements-list {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 4px solid var(--border-color); /* A nice separator */
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 0;
-        }
-
-        .achievement-item {
-            display: flex;
-            align-items: center;
-            font-size: 0.8rem;
-            margin-bottom: 1.2rem;
-            line-height: 1.4;
-        }
-        .achievement-item strong {
-            display: block; /* Makes the title pop */
-        }
-        
-        /* 5. NUEVO: Estilos para la lluvia de fresas */
         .strawberry {
-            position: fixed;
-            top: -50px; /* Empieza fuera de la pantalla */
-            font-size: 2rem; /* Tamaño del emoji */
-            z-index: 1; /* Detrás del container */
-            animation: fall 5s linear infinite;
+            position: absolute;
+            top: -50px; /* Empezar fuera de la pantalla */
+            font-size: 2rem;
+            user-select: none;
+            animation: fall linear;
+            z-index: 50;
         }
 
         @keyframes fall {
-            0% {
-                transform: translateY(0) rotate(0);
+            from {
+                transform: translateY(0vh) rotate(0deg);
             }
-            100% {
-                transform: translateY(105vh) rotate(360deg);
+            to {
+                transform: translateY(105vh) rotate(360deg); /* Caer hasta abajo */
             }
         }
-        
-
     </style>
-</head>
-<body>
-
-    <!-- 3. NUEVO: Botón de lluvia de fresas -->
-    <button id="rain-button" class="pixel-button">🍓</button>
-
-    <!-- 4. NUEVO: Tag de audio para la música -->
-    <!-- 
-      IMPORTANTE: Reemplaza este 'src' con tu propio archivo de música 8-bit.
-      Puedes encontrar música gratis en Pixabay.com (busca "8-bit")
-    -->
-    <audio id="bg-music" loop src="https://cdn.pixabay.com/audio/2022/07/19/audio_b2f1e6b653.mp3"></audio>
-
-
-    <!-- This is the main "window" -->
-    <div class="container">
-        
-        <h1>
-            <span class="heart-icon"></span>
-            Happy Anniversary, Player 2!
-            <span class="heart-icon"></span>
-        </h1>
-        
-        <div class="content">
-            <p>Welcome to Level: [X]!</p>
-            <p>Our co-op adventure gets better every single day. I'm so glad you joined my party.</p>
-            <p>...You still steal all my items, but I guess I love you for it. ❤️</p>
-        </div>
-        
-        <div class="button-container">
-            <button id="message-button" class="pixel-button">[ View Message ]</button>
-        </div>
-
-        <!-- This is the hidden message box -->
-        <div id="secret-message">
-            <p id="message-text">Loading...</p>
-            <div class="button-container">
-                <!-- 4. CAMBIO: Este es el nuevo botón multi-propósito -->
-                <button id="popup-action-button" class="pixel-button">[ TE AMO ]</button>
-            </div>
-        </div>
-
-        <!-- --- NEW: Achievements Section --- -->
-        <!-- This is the best place to add your personal memories! -->
-        <div class="achievements-list">
-            <h2><span class="trophy-icon"></span>Logros Compartidos<span class="trophy-icon"></span></h2>
-            <ul>
-                <li class="achievement-item">
-                    <span class="trophy-icon"></span>
-                    <div>
-                        <strong>QUEST COMPLETE:</strong> ¡Primera Cita!
-                    </div>
-                </li>
-                <li class="achievement-item">
-                    <span class="trophy-icon"></span>
-                    <div>
-                        <strong>DESBLOQUEADO:</strong> Logro "Te Amo"
-                    </div>
-                </li>
-                <li class="achievement-item">
-                    <span class="trophy-icon"></span>
-                    <div>
-                        <strong>HAZAÑA ÉPICA:</strong> Sobrevivir a IKEA
-                    </div>
-                </li>
-                <li class="achievement-item">
-                    <span class="trophy-icon"></span>
-                    <div>
-                        <!-- 5. CAMBIO: Logro actualizado -->
-                        <strong>¡[NUEVO!]</strong> ¡Un Año de Novios!
-                    </div>
-                </li>
-                <!-- 
-                  TODO: Add your own special memories here! 
-                  Just copy and paste one of the <li ...> ... </li> blocks 
-                  and change the text inside.
-                -->
-            </ul>
-        </div>
-        <!-- End of new section -->
-
+  </head>
+<body class="font-display bg-zinc-100 dark:bg-zinc-900 flex justify-center items-center p-0 sm:p-4">
+<div class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden sm:shadow-2xl sm:rounded-2xl">
+<div class="flex items-center bg-transparent p-4 pb-2 justify-between text-zinc-900 dark:text-zinc-100">
+<div class="flex w-12 shrink-0 items-center justify-start">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-primary/10 transition-colors">
+<span class="text-2xl">❤️</span>
+</button>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">One Thousand More</h2>
+<div class="flex w-12 items-center justify-end">
+<button id="strawberryButton" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-primary/10 transition-colors">
+<span class="text-2xl">🍓</span>
+</button>
+</div>
+</div>
+<div class="relative mb-6 mx-4 rounded-xl border-4 border-primary/50 bg-white dark:bg-zinc-800 p-3 shadow-lg flex flex-col items-center justify-center text-center text-zinc-900 dark:text-white">
+<div class="absolute inset-0 scale-105 bg-primary/20 rounded-xl blur-2xl dark:bg-primary/30 opacity-60"></div>
+<div class="relative z-10 w-full flex flex-col items-center justify-center">
+<p class="text-sm font-medium text-primary mb-1">Our next anniversary</p>
+<div class="flex items-baseline justify-center gap-x-1.5 text-zinc-900 dark:text-white flex-wrap px-2">
+<span class="text-2xl font-bold tracking-tighter">245</span><span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">d</span>
+<span class="text-2xl font-bold tracking-tighter">10</span><span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">h</span>
+<span class="text-2xl font-bold tracking-tighter">32</span><span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">m</span>
+<span class="text-2xl font-bold tracking-tighter">18</span><span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">s</span>
+</div>
+<div class="mt-3 w-full bg-primary/10 dark:bg-primary/20 rounded-md py-2 px-4 text-sm text-zinc-700 dark:text-zinc-300">
+<p>Celebrating every precious moment.</p>
+</div>
+</div>
+</div>
+<main class="flex flex-1 flex-col overflow-y-auto px-4 pb-4 scrollbar-hide">
+<div class="grid grid-cols-1 gap-6 py-4">
+<!-- Card 1: Our First Anniversary! -->
+<div class="w-full bg-white dark:bg-zinc-800 shadow-md rounded-lg overflow-hidden">
+    <div class="w-full h-32 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+        <span class="material-symbols-outlined text-4xl">calendar_today</span>
     </div>
+    <div class="p-4">
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Nov 23, 2023</p>
+        <h3 class="font-semibold text-zinc-900 dark:text-white">Our First Anniversary!</h3>
+        <p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">A sweet day marking the beginning of our journey. Remember the cake and the laughter!</p>
+    </div>
+</div>
+<!-- Card 2: Weekend Getaway -->
+<div class="w-full bg-white dark:bg-zinc-800 shadow-md rounded-lg overflow-hidden">
+    <div class="w-full h-32 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+        <span class="material-symbols-outlined text-4xl">emoji_events</span>
+    </div>
+    <div class="p-4">
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Oct 15, 2023</p>
+        <h3 class="font-semibold text-zinc-900 dark:text-white">Weekend Getaway</h3>
+        <p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">Explored new places and made unforgettable memories. The sunrise hike was amazing!</p>
+    </div>
+</div>
+<!-- Card 3: First Home-cooked Dinner -->
+<div class="w-full bg-white dark:bg-zinc-800 shadow-md rounded-lg overflow-hidden">
+    <div class="w-full h-32 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+        <span class="material-symbols-outlined text-4xl">favorite</span>
+    </div>
+    <div class="p-4">
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Aug 01, 2023</p>
+        <h3 class="font-semibold text-zinc-900 dark:text-white">First Home-cooked Dinner</h3>
+        <p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">Enjoyed a cozy evening with our favorite dishes. Your lasagna was incredible!</p>
+    </div>
+</div>
+<!-- Card 4: Surprise Gift -->
+<div class="w-full bg-white dark:bg-zinc-800 shadow-md rounded-lg overflow-hidden">
+    <div class="w-full h-32 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+        <span class="material-symbols-outlined text-4xl">redeem</span>
+    </div>
+    <div class="p-4">
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Jun 20, 2023</p>
+        <h3 class="font-semibold text-zinc-900 dark:text-white">Surprise Gift</h3>
+        <p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">Received the most thoughtful present! I still cherish it every day.</p>
+    </div>
+</div>
+<!-- Card 5: Spring Picnic -->
+<div class="w-full bg-white dark:bg-zinc-800 shadow-md rounded-lg overflow-hidden">
+    <div class="w-full h-32 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+        <span class="material-symbols-outlined text-4xl">park</span>
+    </div>
+    <div class="p-4">
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Apr 10, 2023</p>
+        <h3 class="font-semibold text-zinc-900 dark:text-white">Spring Picnic</h3>
+        <p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">A perfect day at the park, full of laughter and sunshine. Remember the frisbee?</p>
+    </div>
+</div>
+<!-- Card 6: Valentine's Day Date -->
+<div class="w-full bg-white dark:bg-zinc-800 shadow-md rounded-lg overflow-hidden">
+    <div class="w-full h-32 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
+        <span class="material-symbols-outlined text-4xl">celebration</span>
+    </div>
+    <div class="p-4">
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Feb 14, 2023</p>
+        <h3 class="font-semibold text-zinc-900 dark:text-white">Valentine's Day Date</h3>
+        <p class="text-sm text-zinc-700 dark:text-zinc-300 mt-2">Romantic dinner and sweet conversations. The best Valentine's ever!</p>
+    </div>
+</div>
+</div>
+</main>
 
-    <script>
-        // This JavaScript makes the buttons work
-        
-        // 1. A list of cute messages. You can add as many as you want!
-        const cuteMessages = [
-            "You've activated my trap card: UNCONDITIONAL LOVE!",
-            "Are you a high-level item? Because you are LEGENDARY.",
-            "My love for you is over 9000!",
-            "QUEST: Cuddle you. (Reward: Happiness)",
-            "You must be a cheat code, because you've made my life perfect.",
-            "I love you more than finding a rare shiny Pokemon.",
-            "It's dangerous to go alone... so let's go together forever. <3",
-            "Our love is my favorite side-quest... and main-quest.",
-            "You've critted my heart."
-        ];
+<!-- Contenedor para la lluvia de fresas -->
+<div id="rain-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
 
-        // 2. Get all the HTML elements we need
-        const messageButton = document.getElementById('message-button');
-        // 4. CAMBIO: Botón renombrado
-        const popupActionButton = document.getElementById('popup-action-button');
-        const secretMessageBox = document.getElementById('secret-message');
-        const messageText = document.getElementById('message-text');
-        // 3. NUEVO: Elemento para la lluvia
-        const rainButton = document.getElementById('rain-button');
-        // 4. NUEVO: Elemento de música
-        const bgMusic = document.getElementById('bg-music');
+</div>
 
-        // 4. NUEVO: Estado para el popup
-        let hasSaidILoveYou = false;
+<!-- Script para la lluvia de fresas -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const strawberryButton = document.getElementById('strawberryButton');
+        const rainContainer = document.getElementById('rain-container');
 
-        // --- NEW: Typewriter Effect ---
-        let typingInterval = null; // To keep track of the typing
-
-        function typeMessage(text, element) {
-            // Clear any previous typing
-            if (typingInterval) {
-                clearInterval(typingInterval);
-            }
-            
-            let index = 0;
-            element.textContent = ''; // Clear text first
-            
-            // Disable the close button while typing
-            popupActionButton.disabled = true;
-
-            typingInterval = setInterval(() => {
-                if (index < text.length) {
-                    element.textContent += text.charAt(index);
-                    index++;
-                } else {
-                    clearInterval(typingInterval);
-                    typingInterval = null;
-                    // Re-enable close button *after* typing is done
-                    popupActionButton.disabled = false;
-                }
-            }, 50); // 50ms speed. Adjust for faster/slower typing.
-        }
-        // --- End of Typewriter Effect ---
-
-
-        // 3. CAMBIO: Lógica para el botón de mensaje principal
-        messageButton.addEventListener('click', () => {
-            // 4. CAMBIO: Mostrar solo el mensaje inicial
-            messageText.textContent = "Feliz Aniversario Mi Vida!";
-            
-            // Show the secret message box
-            secretMessageBox.style.display = 'block';
-            
-            // Hide the "Press START" button
-            messageButton.style.display = 'none';
-
-            // 4. CAMBIO: Resetear el botón de acción
-            popupActionButton.textContent = "[ TE AMO ]";
-            hasSaidILoveYou = false;
-            // Habilitarlo por si acaso estaba deshabilitado
-            popupActionButton.disabled = false;
-        });
-
-        // 4. CAMBIO: Lógica para el nuevo botón [ TE AMO ] / [ CERRAR ]
-        popupActionButton.addEventListener('click', () => {
-            // Si es la primera vez que hace clic (el botón dice TE AMO)
-            if (!hasSaidILoveYou) {
-                // Empezar la música
-                bgMusic.play();
-                
-                // Elegir y mostrar el mensaje secreto con máquina de escribir
-                const randomIndex = Math.floor(Math.random() * cuteMessages.length);
-                const randomMessage = cuteMessages[randomIndex];
-                typeMessage(randomMessage, messageText);
-                
-                // Cambiar el botón a "CERRAR"
-                popupActionButton.textContent = "[ CERRAR ]";
-                hasSaidILoveYou = true;
-            } else {
-                // Si es la segunda vez (el botón dice CERRAR)
-                
-                // Detener la máquina de escribir si está activa
-                if (typingInterval) {
-                    clearInterval(typingInterval);
-                    typingInterval = null;
-                }
-
-                // Hide the secret message box
-                secretMessageBox.style.display = 'none';
-                
-                // Show the "Press START" button again
-                messageButton.style.display = 'inline-block';
-                
-                // Pausar la música (opcional, puedes quitar esta línea si quieres que siga sonando)
-                // bgMusic.pause();
-                // bgMusic.currentTime = 0; // Reinicia la canción
+        strawberryButton.addEventListener('click', () => {
+            // Crear varias fresas a la vez
+            for (let i = 0; i < 25; i++) {
+                createStrawberry();
             }
         });
 
-        // 3. NUEVO: Lógica para la lluvia de fresas
         function createStrawberry() {
             const strawberry = document.createElement('div');
             strawberry.classList.add('strawberry');
-            strawberry.textContent = '🍓';
+            strawberry.innerText = '🍓';
             
-            // Posición horizontal aleatoria
-            strawberry.style.left = Math.random() * 100 + 'vw';
+            // Posición horizontal aleatoria dentro del contenedor
+            strawberry.style.left = `${Math.random() * 100}%`;
             
-            // Duración de animación aleatoria
-            strawberry.style.animationDuration = (Math.random() * 2) + 3 + 's'; // Entre 3s y 5s
+            // Duración de caída aleatoria (entre 1 y 3 segundos) - MÁS RÁPIDO
+            const duration = Math.random() * 2 + 1;
+            strawberry.style.animationDuration = `${duration}s`;
             
-            document.body.appendChild(strawberry);
+            // Retraso de inicio aleatorio
+            strawberry.style.animationDelay = `${Math.random() * 1}s`; // Reducido también el delay
             
-            // Limpiar el DOM después de que caiga
-            strawberry.addEventListener('animationend', () => {
-                strawberry.remove();
-            });
-        }
-        
-        // Activar la lluvia al hacer clic
-        rainButton.addEventListener('click', () => {
-            // Lanzar 20 fresas en intervalos
-            let rainCount = 0;
-            const rainInterval = setInterval(() => {
-                if (rainCount < 20) {
-                    createStrawberry();
-                    rainCount++;
-                } else {
-                    clearInterval(rainInterval);
-                }
-            }, 100); // Una fresa nueva cada 100ms
-        });
-        
-    </script>
+            // Tamaño aleatorio
+            strawberry.style.fontSize = `${Math.random() * 1.5 + 1}rem`;
+            // Opacidad 100%
+            strawberry.style.opacity = `1`;
 
-</body>
-</html>
+            rainContainer.appendChild(strawberry);
+
+            // Limpiar la fresa del DOM después de que termine la animación
+            // (duración + retraso max) * 1000ms
+            setTimeout(() => {
+                strawberry.remove();
+            }, (duration + 1) * 1000); 
+        }
+    });
+</script>
+
+</body></html>
+
 
