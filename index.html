@@ -12,6 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <!-- Link para el ícono 'arrow_back_ios' -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 
     <style>
         /* Fuentes personalizadas del popup */
@@ -20,6 +24,16 @@
         }
         .font-script {
             font-family: 'Dancing Script', cursive;
+        }
+        
+        /* Estilo para el nuevo ícono de flecha */
+        .material-symbols-outlined.icon-arrow-back {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48;
+            font-size: 28px; /* Tamaño ajustado para el botón */
         }
     </style>
 
@@ -209,11 +223,12 @@
                 <div class="absolute inset-0 scale-105 bg-primary/20 rounded-xl blur-2xl opacity-60"></div>
                 <div class="relative z-10 w-full flex flex-col items-center justify-center">
                     <p class="text-sm font-medium text-primary mb-1">Our next anniversary</p>
+                    <!-- Contenedor del countdown con IDs para JS -->
                     <div class="flex items-baseline justify-center gap-x-1.5 text-zinc-900 flex-wrap px-2">
-                        <span class="text-2xl font-bold tracking-tighter">245</span><span class="text-sm font-medium text-zinc-500">d</span>
-                        <span class="text-2xl font-bold tracking-tighter">10</span><span class="text-sm font-medium text-zinc-500">h</span>
-                        <span class="text-2xl font-bold tracking-tighter">32</span><span class="text-sm font-medium text-zinc-500">m</span>
-                        <span class="text-2xl font-bold tracking-tighter">18</span><span class="text-sm font-medium text-zinc-500">s</span>
+                        <span id="countdown-days" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">d</span>
+                        <span id="countdown-hours" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">h</span>
+                        <span id="countdown-minutes" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">m</span>
+                        <span id="countdown-seconds" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">s</span>
                     </div>
                     <div class="mt-3 w-full bg-primary/10 rounded-md py-2 px-4 text-sm text-zinc-700">
                         <p>Celebrating every precious moment.</p>
@@ -300,13 +315,16 @@
 
 
     <!-- === MODAL DEL CORAZÓN 3D (Oculto) === -->
-    <!-- Se cambia el fondo de bg-black/70 backdrop-blur-sm a bg-zinc-100 para que coincida con el body de la app -->
-    <div id="heartModal" class="fixed inset-0 bg-zinc-100 flex justify-center items-center p-0 sm:p-4" style="display: none; z-index: 100; overflow: hidden;">
+    <!-- Clases de transición añadidas al modal y al contenedor -->
+    <div id="heartModal" class="fixed inset-0 bg-zinc-100 flex justify-center items-center p-0 sm:p-4 opacity-0 transition-opacity duration-300 ease-out" style="display: none; z-index: 100; overflow: hidden;">
         
         <!-- Contenedor del modal 3D, con el mismo layout que la app principal -->
-        <div id="heartModalContainer" class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-background-light group/design-root overflow-x-hidden sm:shadow-2xl sm:rounded-2xl" style="cursor: grab;">
+        <div id="heartModalContainer" class="relative flex h-dvh min-h-screen w-full max-w-md flex-col bg-background-light group/design-root overflow-x-hidden sm:shadow-2xl sm:rounded-2xl opacity-0 scale-95 transition-all duration-300 ease-out" style="cursor: grab;">
             
-            <button id="closeHeartModal" class="absolute top-4 right-4 text-zinc-900 text-5xl font-mono" style="z-index: 101; line-height: 1; -webkit-user-select: none; user-select: none; opacity: 0.7;">&times;</button>
+            <!-- Botón de cerrar movido a la izquierda con ícono -->
+            <button id="closeHeartModal" class="absolute top-4 left-4 text-primary" style="z-index: 101; -webkit-user-select: none; user-select: none; opacity: 0.7; padding: 0.5rem; /* Añade área de toque */">
+                 <span class="material-symbols-outlined icon-arrow-back">arrow_back_ios</span>
+            </button>
             
             <div class="flex-1 grid place-items-center overflow-hidden">
                 <!-- El pre ahora tiene 12px y 900 (bold) -->
@@ -350,6 +368,9 @@
                         mainAppContainer.style.opacity = '0';
                         mainAppContainer.style.transition = 'opacity 0.5s ease-in';
                         setTimeout(() => mainAppContainer.style.opacity = '1', 10);
+                        
+                        // 5. Iniciar el countdown *después* de mostrar la app
+                        startAnniversaryCountdown();
 
                     }, 500); // Sincronizado con la transición de opacidad
                 });
@@ -412,7 +433,6 @@
 
             function createStrawberryHeart() {
                 const heartPattern = [
-                    //"    ****** ******",
                     "    ******         ******",
                     "  *********       *********",
                     "  **********     **********",
@@ -520,7 +540,59 @@
                 });
             }
 
-            // === CÓDIGO NUEVO DEL CORAZÓN 3D ===
+
+            // === LÓGICA DEL COUNTDOWN ===
+            function startAnniversaryCountdown() {
+                const daysEl = document.getElementById('countdown-days');
+                const hoursEl = document.getElementById('countdown-hours');
+                const minutesEl = document.getElementById('countdown-minutes');
+                const secondsEl = document.getElementById('countdown-seconds');
+
+                // Asegurarse de que todos los elementos existen
+                if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
+                    console.error("No se encontraron los elementos del countdown.");
+                    return;
+                }
+
+                // Usar ISO 8601 para la fecha objetivo para mejor compatibilidad
+                const targetDate = new Date('2026-11-25T00:00:00').getTime();
+
+                function updateCountdown() {
+                    const now = new Date().getTime();
+                    const distance = targetDate - now;
+
+                    if (distance < 0) {
+                        // El countdown terminó
+                        clearInterval(countdownInterval);
+                        daysEl.innerText = '0';
+                        hoursEl.innerText = '0';
+                        minutesEl.innerText = '0';
+                        secondsEl.innerText = '0';
+                        return;
+                    }
+
+                    // Cálculos de tiempo
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Actualizar el DOM
+                    // Usar padStart para agregar ceros al inicio si es necesario
+                    daysEl.innerText = String(days);
+                    hoursEl.innerText = String(hours).padStart(2, '0');
+                    minutesEl.innerText = String(minutes).padStart(2, '0');
+                    secondsEl.innerText = String(seconds).padStart(2, '0');
+                }
+
+                // Iniciar el intervalo y guardarlo para poder detenerlo
+                const countdownInterval = setInterval(updateCountdown, 1000);
+                updateCountdown(); // Llamar una vez al inicio para evitar el retraso de 1s
+            }
+            // NOTA: startAnniversaryCountdown() se llama ahora desde el listener del botón del popup
+
+
+            // === CÓDIGO DEL MODAL CORAZÓN 3D ===
 
             // --- Referencias a elementos del Modal ---
             const heartButton = document.getElementById('heartButton');
@@ -669,22 +741,38 @@
                 // --- Event Listeners para el Modal ---
 
                 heartButton.addEventListener('click', () => {
-                    heartModal.style.display = 'flex'; 
-                    document.body.style.overflow = 'hidden'; 
-                    setupBuffers(); 
-                    if (heart_animationId) cancelAnimationFrame(heart_animationId); 
-                    heartLoop(); 
+                    // Lógica de animación de entrada
+                    heartModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                    setupBuffers();
+                    if (heart_animationId) cancelAnimationFrame(heart_animationId);
+                    heartLoop();
+                    
+                    // Animar la entrada
+                    setTimeout(() => {
+                        heartModal.classList.remove('opacity-0');
+                        heartModalContainer.classList.remove('opacity-0', 'scale-95');
+                    }, 10); // Pequeño retraso para permitir que 'display: flex' se aplique
                 });
 
                 closeHeartModal.addEventListener('click', () => {
-                    heartModal.style.display = 'none';
-                    document.body.style.overflow = ''; 
-                    if (heart_animationId) {
-                        cancelAnimationFrame(heart_animationId); 
-                        heart_animationId = null;
-                    }
+                    // Lógica de animación de salida
+                    heartModal.classList.add('opacity-0');
+                    heartModalContainer.classList.add('opacity-0', 'scale-95');
+
+                    // Escuchar a que la transición del *contenedor* (la más larga) termine
+                    heartModalContainer.addEventListener('transitionend', () => {
+                        heartModal.style.display = 'none'; // Ocultar el modal
+                        document.body.style.overflow = ''; // Restaurar scroll
+                        
+                        if (heart_animationId) {
+                            cancelAnimationFrame(heart_animationId); // Detener el loop
+                            heart_animationId = null;
+                        }
+                    }, { once: true }); // El listener se auto-elimina
                 });
 
+                // --- Listeners de Mouse ---
                 heartModalContainer.addEventListener('mousedown', (e) => { 
                     heart_isDragging = true;
                     heart_lastMouseX = e.clientX;
@@ -712,6 +800,44 @@
                     heart_isDragging = false;
                     heartModalContainer.classList.remove('grabbing'); 
                 });
+
+                // --- CONTROLES TÁCTILES ---
+                heartModalContainer.addEventListener('touchstart', (e) => {
+                    heart_isDragging = true;
+                    // Usar el primer toque
+                    const touch = e.touches[0];
+                    heart_lastMouseX = touch.clientX;
+                    heart_lastMouseY = touch.clientY;
+                    heartModalContainer.classList.add('grabbing');
+                    e.preventDefault(); // Prevenir scroll de la página
+                }, { passive: false }); // 'passive: false' para permitir preventDefault
+
+                heartModalContainer.addEventListener('touchmove', (e) => {
+                    if (!heart_isDragging) return;
+
+                    const touch = e.touches[0];
+                    const deltaX = touch.clientX - heart_lastMouseX;
+                    const deltaY = touch.clientY - heart_lastMouseY;
+
+                    heart_angleB += deltaX * 0.005;
+                    heart_angleA -= deltaY * 0.005; 
+
+                    heart_lastMouseX = touch.clientX;
+                    heart_lastMouseY = touch.clientY;
+                    e.preventDefault(); // Prevenir scroll
+                }, { passive: false });
+
+                heartModalContainer.addEventListener('touchend', () => {
+                    heart_isDragging = false;
+                    heartModalContainer.classList.remove('grabbing');
+                });
+
+                heartModalContainer.addEventListener('touchcancel', () => {
+                    heart_isDragging = false;
+                    heartModalContainer.classList.remove('grabbing');
+                });
+                // --- FIN CONTROLES TÁCTILES ---
+
 
                 window.addEventListener('resize', () => {
                     if (heartModal.style.display === 'flex') { 
