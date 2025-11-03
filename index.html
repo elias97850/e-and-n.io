@@ -30,10 +30,10 @@
         .material-symbols-outlined.icon-arrow-back {
             font-variation-settings:
             'FILL' 0,
-            'wght' 400,
+            'wght' 700, /* Ya está en BOLD (700) */
             'GRAD' 0,
             'opsz' 48;
-            font-size: 28px; /* Tamaño ajustado para el botón */
+            font-size: 32px; /* Aumentado de 28px a 32px para más presencia */
         }
     </style>
 
@@ -240,6 +240,17 @@
                             <div class="mt-3 w-full bg-primary/10 rounded-md py-2 px-4 text-sm text-zinc-700">
                                 <p>Celebrating every precious moment.</p>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+                        <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
+                            <span class="material-symbols-outlined text-4xl">calendar_today</span>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-zinc-500 mb-1">Nov 23, 2023</p>
+                            <h3 class="font-semibold text-zinc-900">Our First Anniversary!</h3>
+                            <p class="text-sm text-zinc-700 mt-2">A sweet day marking the beginning of our journey. Remember the cake and the laughter!</p>
                         </div>
                     </div>
 
@@ -750,7 +761,9 @@
                     }, 10); // Pequeño retraso para permitir que 'display: flex' se aplique
                 });
 
-                closeHeartModal.addEventListener('click', () => {
+                // --- Lógica de Cierre del Modal ---
+                // Se crea una función separada para que la llamen tanto 'click' como 'touchstart'
+                function triggerCloseModalAnimation() {
                     // Lógica de animación de salida
                     heartModal.classList.add('opacity-0');
                     heartModalContainer.classList.add('opacity-0', 'scale-95');
@@ -765,7 +778,18 @@
                             heart_animationId = null;
                         }
                     }, { once: true }); // El listener se auto-elimina
+                }
+
+                // Asignar la lógica de cierre al 'click' (para escritorio)
+                closeHeartModal.addEventListener('click', triggerCloseModalAnimation);
+                
+                // Asignar la lógica de cierre al 'touchstart' (para móvil)
+                closeHeartModal.addEventListener('touchstart', (e) => {
+                    e.preventDefault(); // Previene el 'click' fantasma y el scroll
+                    e.stopPropagation(); // Previene que el 'touchstart' del contenedor se dispare
+                    triggerCloseModalAnimation();
                 });
+
 
                 // --- Listeners de Mouse ---
                 heartModalContainer.addEventListener('mousedown', (e) => { 
@@ -798,6 +822,11 @@
 
                 // --- CONTROLES TÁCTILES ---
                 heartModalContainer.addEventListener('touchstart', (e) => {
+                    // AÑADIDO: Comprobar si el toque es en el botón de cerrar
+                    if (closeHeartModal.contains(e.target)) {
+                        return; // Dejar que el listener del botón se encargue
+                    }
+
                     heart_isDragging = true;
                     // Usar el primer toque
                     const touch = e.touches[0];
@@ -848,5 +877,6 @@
 
 </body>
 </html>
+
 
 
