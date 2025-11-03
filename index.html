@@ -3,64 +3,136 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <!-- El título de la pestaña será el del popup, luego la app principal -->
-    <title>Happy Anniversary</title>
+    <title>Our First Year</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <!-- Fuentes combinadas para el popup y la app principal -->
+    
+    <!-- Fuentes para el Popup y la App -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     
-    <!-- Link para el ícono 'arrow_back_ios' -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
+    <!-- Carga principal de Iconos de Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
     <style>
-        /* Fuentes personalizadas del popup */
         .font-serif-display {
             font-family: 'Playfair Display', serif;
         }
+
         .font-script {
             font-family: 'Dancing Script', cursive;
         }
         
+        /* FIX: Asegurar que todos los 'material-symbols-outlined' usen la fuente correcta */
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+        }
+
         /* Estilo para el nuevo ícono de flecha */
-        .material-symbols-outlined.icon-arrow-back {
+        .material-symbols-outlined.icon-arrow-back-style {
             font-variation-settings:
-            'FILL' 0,
-            'wght' 700, /* Ya está en BOLD (700) */
-            'GRAD' 0,
-            'opsz' 48;
-            font-size: 32px; /* Aumentado de 28px a 32px para más presencia */
+                'FILL' 1,
+                'wght' 700,
+                'GRAD' 0,
+                'opsz' 48;
+            font-size: 40px; /* Más grande para ser más 'thick' */
+        }
+        
+        /* Ocultar barra de scroll en main */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .strawberry {
+            position: absolute;
+            top: -50px;
+            /* Empezar fuera de la pantalla */
+            font-size: 2rem;
+            user-select: none;
+            animation: fall linear;
+            z-index: 50;
+            opacity: 1;
+            /* Siempre opacidad 100% */
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(0vh) rotate(0deg);
+            }
+
+            to {
+                transform: translateY(105vh) rotate(360deg);
+                /* Caer hasta abajo */
+            }
+        }
+
+        .strawberry-heart-piece {
+            position: absolute;
+            font-size: 2rem;
+            transform-origin: center;
+            z-index: 100;
+            /* Iniciar invisible y centrado para la animación fadeIn */
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+            /* Corregido: centrar desde el inicio */
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+                /* Corregido: mantener el centrado */
+            }
+        }
+
+        /* Estilo para el cursor 'grabbing' del modal */
+        #heartModalContainer.grabbing {
+            cursor: grabbing;
+        }
+
+        /* Animaciones del Modal del Corazón 3D */
+        .modal-hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 300ms ease-out, transform 300ms ease-out;
+            pointer-events: none;
+        }
+        .modal-visible {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 300ms ease-in, transform 300ms ease-in;
         }
     </style>
-
+    
     <script id="tailwind-config">
         tailwind.config = {
-            // Fusión de temas
+             darkMode: "class", // Habilitar dark mode si se usa
             theme: {
                 extend: {
                     colors: {
-                        // Colores de la App Principal
-                        "primary": "#a65eed", // Púrpura principal
-                        "background-light": "#f7f6f8",
-                        "background-dark": "#191121",
-                        
-                        // Colores del Popup (algunos pueden reusarse o renombrarse si es necesario)
+                        // Colores del Popup
                         "primary-darker": "#9370DB",
-                        "text-light": "#333333",
-                        "text-dark": "#F5F5F5",
                         "accent-gold": "#F0E68C",
                         "pastel-purple": "#D1C4E9",
                         "dark-purple": "#673AB7",
+                        "text-light": "#333333",
+                        "text-dark": "#F5F5F5",
+
+                        // Colores de la App (unificados)
+                        "primary": "#a65eed", // Tono violeta principal
+                        "background-light": "#f7f6f8", // Fondo claro de la App
+                        "background-dark": "#191121", // Fondo oscuro (si se usa)
                     },
                     fontFamily: {
-                        // Fuentes de la App Principal
-                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"],
-                        // Fuentes del Popup
-                        "script": ["Dancing Script", "cursive"]
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "script": ["Dancing Script", "cursive"],
+                        "serif-display": ['Playfair Display', 'serif']
                     },
                     borderRadius: {
                         "DEFAULT": "0.5rem",
@@ -68,8 +140,8 @@
                         "xl": "1.5rem",
                         "full": "9999px"
                     },
-                    // Animaciones del Popup
                     keyframes: {
+                        // Keyframes del Popup
                         fadeIn: {
                             '0%': { opacity: 0, transform: 'translateY(10px)' },
                             '100%': { opacity: 1, transform: 'translateY(0)' },
@@ -86,69 +158,26 @@
                             '0%, 100%': { filter: 'brightness(1) blur(6px)' },
                             '50%': { filter: 'brightness(1.1) blur(8px)' },
                         },
+                        // AÑADIDO: Animación de salida para el popup
+                        fadeOut: {
+                            'from': { opacity: 1 },
+                            'to': { opacity: 0 }
+                        },
                     },
                     animation: {
+                        // Animaciones del Popup
                         fadeIn: 'fadeIn 1s ease-out forwards',
                         fadeInUp: 'fadeInUp 0.5s ease-out forwards',
                         backdropIn: 'backdropIn 0.5s ease-out forwards',
                         backgroundPulse: 'backgroundPulse 12s ease-in-out infinite',
+                        fadeOut: 'fadeOut 0.5s ease-out forwards', // AÑADIDO
                     },
                 },
             },
         }
     </script>
-    <style>
-        body {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            /* Eliminamos la altura mínima fija para que se ajuste al dispositivo */
-            min-height: 100dvh; 
-        }
-
-        /* Estilos de las Fresas */
-        .strawberry {
-            position: absolute;
-            top: -50px;
-            font-size: 2rem;
-            user-select: none;
-            animation: fall linear;
-            z-index: 50;
-            opacity: 1;
-        }
-
-        @keyframes fall {
-            from { transform: translateY(0vh) rotate(0deg); }
-            to { transform: translateY(105vh) rotate(360deg); }
-        }
-
-        .strawberry-heart-piece {
-            position: absolute;
-            font-size: 2rem;
-            transform-origin: center;
-            z-index: 100;
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.5);
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
-        /* Re-usamos el keyframe 'fadeIn' de tailwind, pero si no estuviera, este es el fallback */
-         @keyframes fadeInStrawberry {
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
-        .strawberry-heart-piece {
-             animation: fadeInStrawberry 0.5s ease-out forwards;
-        }
-
-
-        /* Estilo para el cursor 'grabbing' del modal 3D */
-        #heartModalContainer.grabbing {
-            cursor: grabbing;
-        }
-
-        /* Variables CSS del Popup */
+    <style type="text/tailwindcss">
+        /* Estilos del Popup (Tailwind) */
         :root {
             --popup-bg-color: #FFFFFF;
             --popup-text-color: #3C3C5C;
@@ -157,10 +186,8 @@
             --button-bg-color: #8B5CF6;
             --button-hover-bg: #7C3AED;
             --button-text-color: #FFFFFF;
-            /* Imagen de fondo aleatoria para el popup */
             --background-image: url('https://source.unsplash.com/random/800x1200/?romantic,abstract,memory,landscape');
         }
-
         .popup-box-bg {
             background-color: var(--popup-bg-color);
             color: var(--popup-text-color);
@@ -174,12 +201,11 @@
     </style>
 </head>
 
-<!-- El body ahora usa las clases base del popup, pero la app principal usará las suyas -->
-<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
-
-    <!-- === POPUP INICIAL === -->
-    <div class="group/design-root fixed inset-0 z-50 flex h-full w-full items-center justify-center p-6 animate-backdropIn" id="welcome-popup">
-        <div class="absolute inset-0 bg-[var(--background-image)] bg-cover bg-center animate-backgroundPulse"></div>
+<body class="font-display bg-zinc-100 flex justify-center items-center p-0 sm:p-4 overflow-hidden"> 
+    
+    <!-- ===== POPUP INICIAL ===== -->
+    <div class="group/design-root fixed inset-0 z-50 flex h-dvh w-full items-center justify-center p-6 animate-backdropIn" id="welcome-popup">
+        <div class="absolute inset-0 bg-[var(--background-image)] bg-cover bg-center animate-backgroundPulse" style="background-image: url('https://images.unsplash.com/photo-1531685250784-75b9f106852e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNjc5fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fHx8&ixlib=rb-4.0.3&q=80&w=1080');"></div>
         <div class="absolute inset-0 bg-black/30 backdrop-blur-md"></div>
         <div class="relative w-full max-w-sm animate-fadeInUp rounded-xl popup-box-bg shadow-2xl shadow-purple-500/30">
             <div class="relative flex flex-col items-center justify-center p-8 text-center">
@@ -193,147 +219,145 @@
                 <p class="mt-2 text-lg font-bold text-[#8B5CF6]">
                     <span>November 23 2025</span>
                 </p>
-                <!-- Este botón ahora oculta el popup y muestra la app -->
-                <button class="mt-8 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-[var(--button-bg-color)] text-[var(--button-text-color)] text-xl font-bold tracking-[0.015em] shadow-lg shadow-purple-500/30 transition-all duration-200 ease-in-out active:scale-95 hover:bg-[var(--button-hover-bg)]" id="enterAppButton">
+                <!-- Botón para cerrar el popup -->
+                <button id="closePopup" class="mt-8 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-[var(--button-bg-color)] text-[var(--button-text-color)] text-xl font-bold tracking-[0.015em] shadow-lg shadow-purple-500/30 transition-all duration-200 ease-in-out active:scale-95 hover:bg-[var(--button-hover-bg)]">
                     <span class="truncate font-bold">TE AMO</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- === APLICACIÓN PRINCIPAL (inicialmente oculta) === -->
-    <!-- Contenedor de la app principal que se mostrará -->
-    <div id="main-app-container" class="hidden w-full h-full justify-center items-center p-0 sm:p-4" style="display: none;">
-        <!-- El layout de la app principal se mueve aquí -->
-        <!-- Se quitó min-h-screen para usar solo h-dvh y ajustarse a la pantalla -->
-        <div class="relative flex h-dvh w-full max-w-md flex-col bg-background-light group/design-root overflow-x-hidden sm:shadow-2xl sm:rounded-2xl">
-            <div class="flex items-center bg-transparent p-4 pb-2 justify-between text-zinc-900">
-                <div class="flex w-12 shrink-0 items-center justify-start">
-                    <button id="heartButton" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-primary/10 transition-colors">
-                        <span class="text-2xl">❤️</span>
-                    </button>
-                </div>
-                <h2 class="text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">One Thousand More</h2>
-                <div class="flex w-12 items-center justify-end">
-                    <button id="strawberryButton" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-primary/10 transition-colors">
-                        <span class="text-2xl">🍓</span>
-                    </button>
+    <!-- ===== APLICACIÓN PRINCIPAL (Oculta al inicio) ===== -->
+    <div id="main-content-wrapper" class="relative flex h-dvh w-full max-w-md flex-col bg-background-light group/design-root overflow-x-hidden sm:shadow-2xl sm:rounded-2xl" style="display: none;">
+        
+        <div class="flex items-center bg-transparent p-4 pb-2 justify-between text-zinc-900">
+            <div class="flex w-12 shrink-0 items-center justify-start">
+                <!-- Botón para ABRIR el modal del corazón 3D -->
+                <button id="heartButton" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-primary/10 transition-colors">
+                    <span class="text-2xl">❤️</span>
+                </button>
+            </div>
+            <h2 class="text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">One Thousand More</h2>
+            <div class="flex w-12 items-center justify-end">
+                <!-- Botón de Fresa -->
+                <button id="strawberryButton" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-primary/10 transition-colors">
+                    <span class="text-2xl">🍓</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenedor principal de la lista (scrollable) -->
+        <main class="flex flex-1 flex-col overflow-y-auto px-4 pb-4 scrollbar-hide">
+            
+            <!-- Countdown (movido dentro del <main>) -->
+            <div class="relative mb-6 mt-4 rounded-xl border-4 border-primary/50 bg-white p-3 shadow-lg flex flex-col items-center justify-center text-center text-zinc-900">
+                <div class="absolute inset-0 scale-105 bg-primary/20 rounded-xl blur-2xl opacity-60"></div>
+                <div class="relative z-10 w-full flex flex-col items-center justify-center">
+                    <p class="text-sm font-medium text-primary mb-1">Our next anniversary</p>
+                    <div class="flex items-baseline justify-center gap-x-1.5 text-zinc-900 flex-wrap px-2">
+                        <!-- IDs para el countdown -->
+                        <span id="countdown-days" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">d</span>
+                        <span id="countdown-hours" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">h</span>
+                        <span id="countdown-minutes" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">m</span>
+                        <span id="countdown-seconds" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">s</span>
+                    </div>
+                    <div class="mt-3 w-full bg-primary/10 rounded-md py-2 px-4 text-sm text-zinc-700">
+                        <p>Celebrating every precious moment.</p>
+                    </div>
                 </div>
             </div>
-            <!-- El bloque del countdown ha sido MOVIDO de aquí -->
-            <main class="flex flex-1 flex-col overflow-y-auto px-4 pb-4 scrollbar-hide">
-                <div class="grid grid-cols-1 gap-6 py-4">
 
-                    <!-- El bloque del countdown AHORA ESTÁ AQUÍ, como primer item del grid -->
-                    <!-- Se han eliminado las clases 'mb-6' y 'mx-4' para que se ajuste al padding del 'main' y al 'gap' del grid -->
-                    <div class="relative rounded-xl border-4 border-primary/50 bg-white p-3 shadow-lg flex flex-col items-center justify-center text-center text-zinc-900">
-                        <div class="absolute inset-0 scale-105 bg-primary/20 rounded-xl blur-2xl opacity-60"></div>
-                        <div class="relative z-10 w-full flex flex-col items-center justify-center">
-                            <p class="text-sm font-medium text-primary mb-1">Our next anniversary</p>
-                            <!-- Contenedor del countdown con IDs para JS -->
-                            <div class="flex items-baseline justify-center gap-x-1.5 text-zinc-900 flex-wrap px-2">
-                                <span id="countdown-days" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">d</span>
-                                <span id="countdown-hours" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">h</span>
-                                <span id="countdown-minutes" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">m</span>
-                                <span id="countdown-seconds" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">s</span>
-                            </div>
-                            <div class="mt-3 w-full bg-primary/10 rounded-md py-2 px-4 text-sm text-zinc-700">
-                                <p>Celebrating every precious moment.</p>
-                            </div>
-                        </div>
+            <!-- Lista de tarjetas -->
+            <div class="grid grid-cols-1 gap-6 py-4">
+
+                <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+                    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
+                        <span class="material-symbols-outlined text-4xl">calendar_today</span>
                     </div>
-
-                    <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                        <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
-                            <span class="material-symbols-outlined text-4xl">calendar_today</span>
-                        </div>
-                        <div class="p-4">
-                            <p class="text-xs text-zinc-500 mb-1">Nov 23, 2023</p>
-                            <h3 class="font-semibold text-zinc-900">Our First Anniversary!</h3>
-                            <p class="text-sm text-zinc-700 mt-2">A sweet day marking the beginning of our journey. Remember the cake and the laughter!</p>
-                        </div>
-                    </div>
-
-                    <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                        <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
-                            <span class="material-symbols-outlined text-4xl">emoji_events</span>
-                        </div>
-                        <div class="p-4">
-                            <p class="text-xs text-zinc-500 mb-1">Oct 15, 2023</p>
-                            <h3 class="font-semibold text-zinc-900">Weekend Getaway</h3>
-                            <p class="text-sm text-zinc-700 mt-2">Explored new places and made unforgettable memories. The sunrise hike was amazing!</p>
-                        </div>
-                    </div>
-
-                    <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                        <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
-                            <span class="material-symbols-outlined text-4xl">favorite</span>
-                        </div>
-                        <div class="p-4">
-                            <p class="text-xs text-zinc-500 mb-1">Aug 01, 2023</p>
-                            <h3 class="font-semibold text-zinc-900">First Home-cooked Dinner</h3>
-                            <p class="text-sm text-zinc-700 mt-2">Enjoyed a cozy evening with our favorite dishes. Your lasagna was incredible!</p>
-                        </div>
-                    </div>
-
-                    <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                        <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
-                            <span class="material-symbols-outlined text-4xl">redeem</span>
-                        </div>
-                        <div class="p-4">
-                            <p class="text-xs text-zinc-500 mb-1">Jun 20, 2023</p>
-                            <h3 class="font-semibold text-zinc-900">Surprise Gift</h3>
-                            <p class="text-sm text-zinc-700 mt-2">Received the most thoughtful present! I still cherish it every day.</p>
-                        </div>
-                    </div>
-
-                    <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                        <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
-                            <span class="material-symbols-outlined text-4xl">park</span>
-                        </div>
-                        <div class="p-4">
-                            <p class="text-xs text-zinc-500 mb-1">Apr 10, 2023</p>
-                            <h3 class="font-semibold text-zinc-900">Spring Picnic</h3>
-                            <p class="text-sm text-zinc-700 mt-2">A perfect day at the park, full of laughter and sunshine. Remember the frisbee?</p>
-                        </div>
-                    </div>
-
-                    <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                        <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
-                            <span class="material-symbols-outlined text-4xl">celebration</span>
-                        </div>
-                        <div class="p-4">
-                            <p class="text-xs text-zinc-500 mb-1">Feb 14, 2023</p>
-                            <h3 class="font-semibold text-zinc-900">Valentine's Day Date</h3>
-                            <p class="text-sm text-zinc-700 mt-2">Romantic dinner and sweet conversations. The best Valentine's ever!</p>
-                        </div>
+                    <div class="p-4">
+                        <p class="text-xs text-zinc-500 mb-1">Nov 23, 2023</p>
+                        <h3 class="font-semibold text-zinc-900">Our First Anniversary!</h3>
+                        <p class="text-sm text-zinc-700 mt-2">A sweet day marking the beginning of our journey. Remember the cake and the laughter!</p>
                     </div>
                 </div>
-            </main>
 
+                <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+                    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
+                        <span class="material-symbols-outlined text-4xl">emoji_events</span>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-xs text-zinc-500 mb-1">Oct 15, 2023</p>
+                        <h3 class="font-semibold text-zinc-900">Weekend Getaway</h3>
+                        <p class="text-sm text-zinc-700 mt-2">Explored new places and made unforgettable memories. The sunrise hike was amazing!</p>
+                    </div>
+                </div>
 
-            <div id="rain-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
-            <div id="heart-container" class="absolute inset-0 flex items-center justify-center pointer-events-none"></div>
+                <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+                    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
+                        <span class="material-symbols-outlined text-4xl">favorite</span>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-xs text-zinc-500 mb-1">Aug 01, 2023</p>
+                        <h3 class="font-semibold text-zinc-900">First Home-cooked Dinner</h3>
+                        <p class="text-sm text-zinc-700 mt-2">Enjoyed a cozy evening with our favorite dishes. Your lasagna was incredible!</p>
+                    </div>
+                </div>
 
-        </div>
+                <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+                    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
+                        <span class="material-symbols-outlined text-4xl">redeem</span>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-xs text-zinc-500 mb-1">Jun 20, 2023</p>
+                        <h3 class="font-semibold text-zinc-900">Surprise Gift</h3>
+                        <p class="text-sm text-zinc-700 mt-2">Received the most thoughtful present! I still cherish it every day.</p>
+                    </div>
+                </div>
+
+                <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+                    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
+                        <span class="material-symbols-outlined text-4xl">park</span>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-xs text-zinc-500 mb-1">Apr 10, 2023</p>
+                        <h3 class="font-semibold text-zinc-900">Spring Picnic</h3>
+                        <p class="text-sm text-zinc-700 mt-2">A perfect day at the park, full of laughter and sunshine. Remember the frisbee?</p>
+                    </div>
+                </div>
+
+                <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+                    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
+                        <span class="material-symbols-outlined text-4xl">celebration</span>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-xs text-zinc-500 mb-1">Feb 14, 2023</p>
+                        <h3 class="font-semibold text-zinc-900">Valentine's Day Date</h3>
+                        <p class="text-sm text-zinc-700 mt-2">Romantic dinner and sweet conversations. The best Valentine's ever!</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Contenedores de Animaciones -->
+        <div id="rain-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+        <div id="heart-container" class="absolute inset-0 flex items-center justify-center pointer-events-none"></div>
+
     </div>
 
-
-    <!-- === MODAL DEL CORAZÓN 3D (Oculto) === -->
-    <!-- Clases de transición añadidas al modal y al contenedor -->
-    <div id="heartModal" class="fixed inset-0 bg-zinc-100 flex justify-center items-center p-0 sm:p-4 opacity-0 transition-opacity duration-300 ease-out" style="display: none; z-index: 100; overflow: hidden;">
+    <!-- ===== MODAL DEL CORAZÓN 3D ===== -->
+    <!-- Fondo del Modal (con animación) -->
+    <div id="heartModalBackdrop" class="fixed inset-0 bg-zinc-100 flex justify-center items-center p-0 sm:p-4 modal-hidden" style="z-index: 100; overflow: hidden;">
         
-        <!-- Contenedor del modal 3D, con el mismo layout que la app principal -->
-        <!-- Se quitó min-h-screen para usar solo h-dvh y ajustarse a la pantalla -->
-        <div id="heartModalContainer" class="relative flex h-dvh w-full max-w-md flex-col bg-background-light group/design-root overflow-x-hidden sm:shadow-2xl sm:rounded-2xl opacity-0 scale-95 transition-all duration-300 ease-out" style="cursor: grab;">
+        <!-- Contenedor del Modal (layout de app) -->
+        <div id="heartModalContainer" class="relative flex h-dvh w-full max-w-md flex-col bg-background-light group/design-root overflow-x-hidden sm:shadow-2xl sm:rounded-2xl" style="cursor: grab;">
             
             <!-- Botón de cerrar movido a la izquierda con ícono -->
-            <button id="closeHeartModal" class="absolute top-4 left-4 text-primary" style="z-index: 101; -webkit-user-select: none; user-select: none; opacity: 0.7; padding: 0.5rem; /* Añade área de toque */">
-                 <span class="material-symbols-outlined icon-arrow-back">arrow_back_ios</span>
+            <button id="closeHeartModal" class="absolute top-4 left-4 text-primary" style="z-index: 101; -webkit-user-select: none; user-select: none; opacity: 0.7; padding: 0.75rem; /* Área de toque aumentada */">
+                 <span class="material-symbols-outlined icon-arrow-back-style">arrow_back_2</span>
             </button>
             
+            <!-- Contenedor del Corazón 3D -->
             <div class="flex-1 grid place-items-center overflow-hidden">
-                <!-- El pre ahora tiene 12px y 900 (bold) -->
                 <pre id="heart-display" style="font-family: 'Courier New', Courier, monospace; font-size: 12px; font-weight: 900; line-height: 1.0; text-align: center; color: #a65eed; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;"></pre>
             </div>
         </div>
@@ -344,46 +368,67 @@
         document.addEventListener('DOMContentLoaded', () => {
 
             // === LÓGICA DEL POPUP INICIAL ===
-            const enterAppButton = document.getElementById('enterAppButton');
-            const welcomePopup = document.getElementById('welcome-popup');
-            const mainAppContainer = document.getElementById('main-app-container');
-            const body = document.body;
-            
-            // Clases de fondo de la app principal (reemplazan a las del popup)
-            const mainAppBgClasses = ['font-display', 'bg-zinc-100', 'flex', 'justify-center', 'items-center'];
+            const popup = document.getElementById('welcome-popup');
+            const closePopupButton = document.getElementById('closePopup');
+            const mainContent = document.getElementById('main-content-wrapper');
 
-            if (enterAppButton && welcomePopup && mainAppContainer) {
-                enterAppButton.addEventListener('click', () => {
-                    // 1. Ocultar el popup con una animación
-                    welcomePopup.style.transition = 'opacity 0.5s ease-out';
-                    welcomePopup.style.opacity = '0';
+            if (popup && closePopupButton && mainContent) {
+                closePopupButton.addEventListener('click', () => {
+                    // Ocultar el popup con la animación de fade-out
+                    popup.classList.remove('animate-backdropIn'); // Quitar animación de entrada
+                    popup.classList.add('animate-fadeOut'); // Añadir animación de salida
                     
                     setTimeout(() => {
-                        welcomePopup.style.display = 'none'; // Ocultarlo completamente
-                        
-                        // 2. Quitar las clases de fondo del popup del body
-                        body.classList.remove('dark:bg-background-dark', 'text-text-light', 'dark:text-text-dark');
-                        
-                        // 3. Añadir las clases de fondo de la app principal al body
-                        body.classList.add(...mainAppBgClasses);
-
-                        // 4. Mostrar el contenedor de la app principal
-                        mainAppContainer.style.display = 'flex'; // Usar flex para centrar
-                        
-                        // Opcional: animar la entrada de la app principal
-                        mainAppContainer.style.opacity = '0';
-                        mainAppContainer.style.transition = 'opacity 0.5s ease-in';
-                        setTimeout(() => mainAppContainer.style.opacity = '1', 10);
-                        
-                        // 5. Iniciar el countdown *después* de mostrar la app
-                        startAnniversaryCountdown();
-
-                    }, 500); // Sincronizado con la transición de opacidad
+                        popup.style.display = 'none';
+                        // Mostrar el contenido principal
+                        mainContent.style.display = 'flex';
+                    }, 500); // Sincronizar con la transición
                 });
+            } else {
+                console.error("No se encontraron los elementos del popup o del contenido principal.");
+                // Si algo falla, ocultar el popup y mostrar la app para que no se bloquee
+                if (popup) popup.style.display = 'none';
+                if (mainContent) mainContent.style.display = 'flex';
             }
 
+            // === LÓGICA DEL COUNTDOWN ===
+            const targetDate = new Date("2026-11-25T00:00:00").getTime();
+            const daysEl = document.getElementById('countdown-days');
+            const hoursEl = document.getElementById('countdown-hours');
+            const minutesEl = document.getElementById('countdown-minutes');
+            const secondsEl = document.getElementById('countdown-seconds');
 
-            // === CÓDIGO DE FRESA EXISTENTE ===
+            function updateCountdown() {
+                if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance < 0) {
+                    daysEl.innerText = "0";
+                    hoursEl.innerText = "0";
+                    minutesEl.innerText = "0";
+                    secondsEl.innerText = "0";
+                    clearInterval(countdownInterval);
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                daysEl.innerText = days;
+                hoursEl.innerText = hours;
+                minutesEl.innerText = minutes;
+                secondsEl.innerText = seconds;
+            }
+            // Actualizar inmediatamente y luego cada segundo
+            updateCountdown();
+            const countdownInterval = setInterval(updateCountdown, 1000);
+
+
+            // === LÓGICA DEL CORAZÓN DE FRESAS ===
             const strawberryButton = document.getElementById('strawberryButton');
             const rainContainer = document.getElementById('rain-container');
             const heartContainer = document.getElementById('heart-container');
@@ -396,7 +441,7 @@
             document.head.appendChild(animationStyleSheetEl);
             const styleSheet = animationStyleSheetEl.sheet;
 
-            if (strawberryButton) {
+            if (strawberryButton && rainContainer && heartContainer) {
                 strawberryButton.addEventListener('click', () => {
                     consecutiveClicks++;
                     if (clickTimer) clearTimeout(clickTimer);
@@ -416,7 +461,6 @@
                     }, 2000);
                 });
             }
-
 
             function createFallingStrawberry() {
                 const strawberry = document.createElement('div');
@@ -439,10 +483,11 @@
 
             function createStrawberryHeart() {
                 const heartPattern = [
-                    "    ******         ******",
-                    "  *********       *********",
-                    "  **********     **********",
-                    " ************   ************",
+                    "    ****** ******",
+                    "    ****** ******",
+                    "  ********** **********",
+                    "  ********** **********",
+                    " ************* *************",
                     "*****************************",
                     "*****************************",
                     "*****************************",
@@ -464,7 +509,7 @@
                     "              *"
                 ];
 
-                const scale = 13; // CAMBIADO DE 15 A 13
+                const scale = 13; // Hecho más compacto
                 const strawberrySize = 1.5;
                 const delayBetweenFresas = 10; // Dibujar rápido
 
@@ -491,10 +536,10 @@
                                 starsPlaced++;
 
                                 if (starsPlaced === totalStars) {
-                                    // Esperar 0.75 segundos después de DIBUJAR la última fresa
+                                    // Esperar 750ms después de DIBUJAR la última fresa
                                     setTimeout(explodeHeart, 750); 
                                 }
-                            }, starsPlaced * delayBetweenFresas); 
+                            }, starsPlaced * delayBetweenFresas); // Usar el contador para el retraso
                         }
                     }
                 });
@@ -511,8 +556,7 @@
 
                     const keyframesName = `explode-strawberry-${index}`;
 
-                    // Asegurarse de que styleSheet esté definido
-                    if (styleSheet) {
+                    try {
                         styleSheet.insertRule(`
                             @keyframes ${keyframesName} {
                                 from {
@@ -529,86 +573,39 @@
                         `, styleSheet.cssRules.length);
 
                         strawberry.style.animation = `${keyframesName} 1.5s ease-out forwards`;
+                    } catch (e) {
+                        console.warn("Error insertando regla CSS (ignorable si son pocas):", e.message);
+                        strawberry.remove(); // Limpiar si falla la animación
                     }
+
 
                     setTimeout(() => {
                         strawberry.remove();
                         // Limpiar la regla de keyframes
-                        if (styleSheet) {
+                        try {
                             for (let i = 0; i < styleSheet.cssRules.length; i++) {
                                 if (styleSheet.cssRules[i] && styleSheet.cssRules[i].name === keyframesName) {
                                     styleSheet.deleteRule(i);
                                     break;
                                 }
                             }
+                        } catch (e) {
+                           // Ignorar errores al limpiar (puede pasar si la hoja de estilos está ocupada)
                         }
                     }, 1500);
                 });
             }
 
-
-            // === LÓGICA DEL COUNTDOWN ===
-            function startAnniversaryCountdown() {
-                const daysEl = document.getElementById('countdown-days');
-                const hoursEl = document.getElementById('countdown-hours');
-                const minutesEl = document.getElementById('countdown-minutes');
-                const secondsEl = document.getElementById('countdown-seconds');
-
-                // Asegurarse de que todos los elementos existen
-                if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
-                    console.error("No se encontraron los elementos del countdown.");
-                    return;
-                }
-
-                // Usar ISO 8601 para la fecha objetivo para mejor compatibilidad
-                const targetDate = new Date('2026-11-25T00:00:00').getTime();
-
-                function updateCountdown() {
-                    const now = new Date().getTime();
-                    const distance = targetDate - now;
-
-                    if (distance < 0) {
-                        // El countdown terminó
-                        clearInterval(countdownInterval);
-                        daysEl.innerText = '0';
-                        hoursEl.innerText = '0';
-                        minutesEl.innerText = '0';
-                        secondsEl.innerText = '0';
-                        return;
-                    }
-
-                    // Cálculos de tiempo
-                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                    // Actualizar el DOM
-                    // Usar padStart para agregar ceros al inicio si es necesario
-                    daysEl.innerText = String(days);
-                    hoursEl.innerText = String(hours).padStart(2, '0');
-                    minutesEl.innerText = String(minutes).padStart(2, '0');
-                    secondsEl.innerText = String(seconds).padStart(2, '0');
-                }
-
-                // Iniciar el intervalo y guardarlo para poder detenerlo
-                const countdownInterval = setInterval(updateCountdown, 1000);
-                updateCountdown(); // Llamar una vez al inicio para evitar el retraso de 1s
-            }
-            // NOTA: startAnniversaryCountdown() se llama ahora desde el listener del botón del popup
-
-
-            // === CÓDIGO DEL MODAL CORAZÓN 3D ===
+            // === LÓGICA DEL CORAZÓN 3D ===
 
             // --- Referencias a elementos del Modal ---
             const heartButton = document.getElementById('heartButton');
-            const heartModal = document.getElementById('heartModal');
+            const heartModalBackdrop = document.getElementById('heartModalBackdrop');
             const closeHeartModal = document.getElementById('closeHeartModal');
             const heartDisplayPre = document.getElementById('heart-display');
             const heartModalContainer = document.getElementById('heartModalContainer'); 
 
-            // Comprobar que todos los elementos del modal existen
-            if (heartButton && heartModal && closeHeartModal && heartDisplayPre && heartModalContainer) { 
+            if (heartButton && heartModalBackdrop && closeHeartModal && heartDisplayPre && heartModalContainer) {
 
                 // --- Constantes y variables globales del Corazón 3D ---
                 const PI = Math.PI;
@@ -622,7 +619,7 @@
 
                 let heart_animationId = null; // Para iniciar/detener el loop
 
-                // --- Variables para control de mouse ---
+                // --- Variables para control de mouse/touch ---
                 let heart_isDragging = false;
                 let heart_lastMouseX = 0;
                 let heart_lastMouseY = 0;
@@ -636,8 +633,8 @@
                  * Inicializa (o reinicializa) los buffers con el tamaño del modal.
                  */
                 function setupBuffers() {
-                    const charWidth = 8; // Ancho de caracter (aprox de Courier 12px 900)
-                    const charHeight = 12; // Alto de caracter (del font-size 12px)
+                    const charWidth = 8; // Ancho (Courier 12px 900)
+                    const charHeight = 12; // Alto (font-size 12px)
 
                     SCREEN_WIDTH = Math.floor(heartModalContainer.clientWidth / charWidth); 
                     SCREEN_HEIGHT = Math.floor(heartModalContainer.clientHeight / charHeight); 
@@ -655,10 +652,8 @@
                  * Renderiza un frame del corazón 3D.
                  */
                 function renderFrame(A, B) {
-                    const cosA = cos(A),
-                        sinA = sin(A);
-                    const cosB = cos(B),
-                        sinB = sin(B);
+                    const cosA = cos(A), sinA = sin(A);
+                    const cosB = cos(B), sinB = sin(B);
 
                     for (let i = 0; i < SCREEN_HEIGHT; i++) {
                         for (let j = 0; j < SCREEN_WIDTH; j++) {
@@ -670,7 +665,7 @@
                     for (let u = 0; u < 2 * PI; u += 0.04) { 
                         for (let v = 0; v < PI; v += 0.04) { 
 
-                            // Fórmulas originales (pequeñas)
+                            // Ecuaciones paramétricas (versión original/pequeña)
                             let x = sin(v) * (15 * sin(u) - 4 * sin(3 * u));
                             let y = 8 * cos(v);
                             let z = sin(v) * (15 * cos(u) - 5 * cos(2 * u) - 2 * cos(3 * u) - cos(4 * u));
@@ -683,14 +678,14 @@
                             let y_rot = y1 * cosA - z1 * sinA;
                             let z_rot = y1 * sinA + z1 * cosA;
 
-                            // Zoom: z_offset = 40
-                            let z_offset = 40; 
+                            // Proyección
+                            let z_offset = 40; // Zoom in (reducido de 70 -> 50 -> 40)
                             let ooz = 1 / (z_rot + z_offset); 
-
+                            
                             let xp = Math.floor(SCREEN_WIDTH / 2 + x_rot * ooz * SCREEN_WIDTH * 0.5);
                             let yp = Math.floor(SCREEN_HEIGHT / 2 - y_rot * ooz * SCREEN_HEIGHT * 0.5);
 
-                            // Normales (originales)
+                            // Normales
                             let nx = sin(v) * (15 * cos(u) - 4 * cos(3 * u));
                             let ny = 8 * -sin(v) * sin(v);
                             let nz = cos(v) * (15 * sin(u) - 5 * sin(2 * u) - 2 * sin(3 * u) - sin(4 * u));
@@ -711,8 +706,9 @@
                             let lx = 0;
                             let ly = 0;
                             let lz = -1; 
-                            let L = nx_rot * lx + ny_rot * ly + nz_rot * lz;
 
+                            let L = nx_rot * lx + ny_rot * ly + nz_rot * lz;
+                            
                             let luminance_index = Math.floor((L + 1) * 5.5);
 
                             if (xp >= 0 && xp < SCREEN_WIDTH && yp >= 0 && yp < SCREEN_HEIGHT) {
@@ -727,72 +723,61 @@
                 }
 
                 /**
-                 * El bucle principal de animación del corazón (lento)
+                 * Bucle de animación del corazón
                  */
                 function heartLoop() {
                     if (!heart_isDragging) {
-                        heart_angleA += 0.02; // Lento
-                        heart_angleB += 0.0075; // Lento
+                        heart_angleA += 0.02; // Más lento
+                        heart_angleB += 0.0075; // Más lento
                     }
+
                     renderFrame(heart_angleA, heart_angleB);
+
                     let outputString = "";
                     for (let i = 0; i < SCREEN_HEIGHT; i++) {
                         outputString += output[i].join('');
                         outputString += '\n';
                     }
                     heartDisplayPre.textContent = outputString;
+
                     heart_animationId = requestAnimationFrame(heartLoop);
                 }
 
-                // --- Event Listeners para el Modal ---
+                // --- Event Listeners para Abrir/Cerrar Modal ---
 
-                heartButton.addEventListener('click', () => {
-                    // Lógica de animación de entrada
-                    heartModal.style.display = 'flex';
-                    document.body.style.overflow = 'hidden';
-                    setupBuffers();
-                    if (heart_animationId) cancelAnimationFrame(heart_animationId);
-                    heartLoop();
-                    
-                    // Animar la entrada
-                    setTimeout(() => {
-                        heartModal.classList.remove('opacity-0');
-                        heartModalContainer.classList.remove('opacity-0', 'scale-95');
-                    }, 10); // Pequeño retraso para permitir que 'display: flex' se aplique
-                });
-
-                // --- Lógica de Cierre del Modal ---
-                // Se crea una función separada para que la llamen tanto 'click' como 'touchstart'
-                function triggerCloseModalAnimation() {
-                    // Lógica de animación de salida
-                    heartModal.classList.add('opacity-0');
-                    heartModalContainer.classList.add('opacity-0', 'scale-95');
-
-                    // Escuchar a que la transición del *contenedor* (la más larga) termine
-                    heartModalContainer.addEventListener('transitionend', () => {
-                        heartModal.style.display = 'none'; // Ocultar el modal
-                        document.body.style.overflow = ''; // Restaurar scroll
-                        
-                        if (heart_animationId) {
-                            cancelAnimationFrame(heart_animationId); // Detener el loop
-                            heart_animationId = null;
-                        }
-                    }, { once: true }); // El listener se auto-elimina
+                function openModal() {
+                    heartModalBackdrop.classList.remove('modal-hidden');
+                    heartModalBackdrop.classList.add('modal-visible');
+                    document.body.style.overflow = 'hidden'; 
+                    setupBuffers(); 
+                    if (heart_animationId) cancelAnimationFrame(heart_animationId); 
+                    heartLoop(); 
                 }
 
-                // Asignar la lógica de cierre al 'click' (para escritorio)
-                closeHeartModal.addEventListener('click', triggerCloseModalAnimation);
-                
-                // Asignar la lógica de cierre al 'touchstart' (para móvil)
+                function closeModal() {
+                    heartModalBackdrop.classList.remove('modal-visible');
+                    heartModalBackdrop.classList.add('modal-hidden');
+                    document.body.style.overflow = ''; 
+                    if (heart_animationId) {
+                        cancelAnimationFrame(heart_animationId); 
+                        heart_animationId = null;
+                    }
+                }
+
+                // Abrir el modal
+                heartButton.addEventListener('click', openModal);
+
+                // Cerrar el modal (con click y touch)
+                closeHeartModal.addEventListener('click', closeModal);
                 closeHeartModal.addEventListener('touchstart', (e) => {
-                    e.preventDefault(); // Previene el 'click' fantasma y el scroll
-                    e.stopPropagation(); // Previene que el 'touchstart' del contenedor se dispare
-                    triggerCloseModalAnimation();
-                });
+                    e.preventDefault(); // Evitar "click" fantasma
+                    closeModal();
+                }, { passive: false });
 
 
-                // --- Listeners de Mouse ---
+                // --- Listeners de Mouse (Rotación) ---
                 heartModalContainer.addEventListener('mousedown', (e) => { 
+                    if (e.target === closeHeartModal || closeHeartModal.contains(e.target)) return; // No arrastrar si se hace clic en el botón
                     heart_isDragging = true;
                     heart_lastMouseX = e.clientX;
                     heart_lastMouseY = e.clientY;
@@ -820,35 +805,27 @@
                     heartModalContainer.classList.remove('grabbing'); 
                 });
 
-                // --- CONTROLES TÁCTILES ---
+                // --- Listeners TÁCTILES (Rotación) ---
                 heartModalContainer.addEventListener('touchstart', (e) => {
-                    // AÑADIDO: Comprobar si el toque es en el botón de cerrar
-                    if (closeHeartModal.contains(e.target)) {
-                        return; // Dejar que el listener del botón se encargue
+                    if (e.target === closeHeartModal || closeHeartModal.contains(e.target)) return; // No arrastrar si se toca el botón
+                    if (e.touches.length === 1) {
+                        heart_isDragging = true;
+                        heart_lastMouseX = e.touches[0].clientX;
+                        heart_lastMouseY = e.touches[0].clientY;
+                        heartModalContainer.classList.add('grabbing');
+                        e.preventDefault();
                     }
-
-                    heart_isDragging = true;
-                    // Usar el primer toque
-                    const touch = e.touches[0];
-                    heart_lastMouseX = touch.clientX;
-                    heart_lastMouseY = touch.clientY;
-                    heartModalContainer.classList.add('grabbing');
-                    e.preventDefault(); // Prevenir scroll de la página
-                }, { passive: false }); // 'passive: false' para permitir preventDefault
+                }, { passive: false });
 
                 heartModalContainer.addEventListener('touchmove', (e) => {
-                    if (!heart_isDragging) return;
-
-                    const touch = e.touches[0];
-                    const deltaX = touch.clientX - heart_lastMouseX;
-                    const deltaY = touch.clientY - heart_lastMouseY;
-
+                    if (!heart_isDragging || e.touches.length !== 1) return;
+                    const deltaX = e.touches[0].clientX - heart_lastMouseX;
+                    const deltaY = e.touches[0].clientY - heart_lastMouseY;
                     heart_angleB += deltaX * 0.005;
-                    heart_angleA -= deltaY * 0.005; 
-
-                    heart_lastMouseX = touch.clientX;
-                    heart_lastMouseY = touch.clientY;
-                    e.preventDefault(); // Prevenir scroll
+                    heart_angleA -= deltaY * 0.005;
+                    heart_lastMouseX = e.touches[0].clientX;
+                    heart_lastMouseY = e.touches[0].clientY;
+                    e.preventDefault();
                 }, { passive: false });
 
                 heartModalContainer.addEventListener('touchend', () => {
@@ -856,18 +833,14 @@
                     heartModalContainer.classList.remove('grabbing');
                 });
 
-                heartModalContainer.addEventListener('touchcancel', () => {
-                    heart_isDragging = false;
-                    heartModalContainer.classList.remove('grabbing');
-                });
-                // --- FIN CONTROLES TÁCTILES ---
 
-
+                // Listener para redimensionar
                 window.addEventListener('resize', () => {
-                    if (heartModal.style.display === 'flex') { 
+                    if (heartModalBackdrop.classList.contains('modal-visible')) { 
                         setupBuffers();
                     }
                 });
+
             } else {
                 console.error("No se pudieron encontrar los elementos del modal del corazón 3D.");
             }
@@ -877,6 +850,4 @@
 
 </body>
 </html>
-
-
 
