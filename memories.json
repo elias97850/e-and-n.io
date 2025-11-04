@@ -3,18 +3,28 @@
     "image": "https://drive.google.com/file/d/1DeoxMcCffx_dDitUlAVTvppeOWF3XDfw/view?usp=drivesdk0",
     "date": "Nov 23, 2023",
     "title": "¡Nuestro Primer Aniversario!",
-    "subtitle": "Un dulce día marcando el inicio de nuestro viaje. ¡Recuerda el pastel y las risas!"
+    "subtitle": "Un dulce día marcando el inicio de nuestro viaje. ¡Recuerda el pastel y las risas!",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "30%"
+    "comment": "zoom: 1 = normal, offsetX: 0%=izq,50%=mid,100%=right, offsetY: 0%=top,50%=mid,100%=bottom"
   },
   {
     "image": "https://drive.google.com/file/d/19kXA4EwU0AAIDRqtnCacCBGVUj17yJ4B/view?usp=drivesdk",
     "date": "Oct 15, 2023",
     "title": "Escapada de Fin de Semana",
-    "subtitle": "Exploramos nuevos lugares e hicimos recuerdos inolvidables. ¡La caminata al amanecer fue increíble!"
+    "subtitle": "Exploramos nuevos lugares e hicimos recuerdos inolvidables. ¡La caminata al amanecer fue increíble!",
+    "zoom": 1.15,
+    "offsetX": "50%",
+    "offsetY": "57%"
   },
   {
     "image": "https://drive.google.com/file/d/15j992kRVC7B9DYZmj3vjtlwyAJK9KCWf/view?usp=drivesdk",
     "date": "Aug 01, 2023",
     "title": "Primera Cena Hecha en Casa",
-    "subtitle": "Disfrutamos una noche acogedora con nuestros platos favoritos. ¡Tu lasaña estaba increíble!"
+    "subtitle": "Disfrutamos una noche acogedora con nuestros platos favoritos. ¡Tu lasaña estaba increíble!",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "15%"
   }
 ]
