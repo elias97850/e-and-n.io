@@ -433,11 +433,9 @@
             // ¡CAMBIO! Se restauró 'async' para que funcione 'await fetch'
             async function loadMemories() {
                 
-                // ¡CAMBIO! Reemplaza esta URL con la URL "RAW" de tu archivo 'memories.json' en GitHub
-                // 1. Ve a tu 'memories.json' en GitHub.
-                // 2. Haz clic en el botón [Raw].
-                // 3. Copia la URL de esa página (debe empezar con raw.githubusercontent.com...)
-                const memoriesURL = './memories.json';  //==============================================================================================================================================================
+                // ¡CAMBIO! Se actualizó la URL para que sea una ruta relativa.
+                // Esto funcionará en GitHub Pages si 'memories.json' está en la misma carpeta.
+                const memoriesURL = './memories.json'; 
                 
                 // ¡CAMBIO! Se eliminó el array 'const memories = [...]' de aquí.
 
