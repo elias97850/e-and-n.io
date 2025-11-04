@@ -430,10 +430,17 @@
             /**
              * Carga las memorias desde el JSON y las muestra en la página.
              */
+            // ¡CAMBIO! Se restauró 'async' para que funcione 'await fetch'
             async function loadMemories() {
-                // IMPORTANTE: Reemplaza esta URL con la URL "raw" de tu archivo en GitHub
-                const memoriesURL = './memories.json'; 
                 
+                // ¡CAMBIO! Reemplaza esta URL con la URL "RAW" de tu archivo 'memories.json' en GitHub
+                // 1. Ve a tu 'memories.json' en GitHub.
+                // 2. Haz clic en el botón [Raw].
+                // 3. Copia la URL de esa página (debe empezar con raw.githubusercontent.com...)
+                const memoriesURL = 'URL_RAW_DE_TU_JSON_EN_GITHUB_VA_AQUÍ'; 
+                
+                // ¡CAMBIO! Se eliminó el array 'const memories = [...]' de aquí.
+
                 const container = document.getElementById('memories-list-container');
                 if (!container) {
                     console.error('Error: No se encontró el contenedor "memories-list-container".');
@@ -444,12 +451,14 @@
                 container.innerHTML = '<p class="text-center text-zinc-500">Cargando recuerdos...</p>';
 
                 try {
+                    
+                    // ¡CAMBIO! Se restauró la lógica de 'fetch'
                     const response = await fetch(memoriesURL);
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const memories = await response.json();
-
+                    
                     // Limpiar el contenedor (quitar el "Cargando...")
                     container.innerHTML = '';
 
@@ -457,13 +466,26 @@
                     memories.forEach(memory => {
                         // Convertir la URL de Google Drive
                         const imageSrc = getGoogleDriveImageURL(memory.image);
+                        
+                        // --- ¡NUEVO! ---
+                        // Obtener valores de zoom y offset, con valores por defecto
+                        const zoom = memory.zoom || 1;
+                        const offsetX = memory.offsetX || '50%';
+                        const offsetY = memory.offsetY || '50%';
+                        // --- FIN DE LO NUEVO ---
 
                         // Crear el HTML de la tarjeta
                         const cardHTML = `
                             <div class="w-full bg-white shadow-md rounded-lg overflow-hidden animate-fadeInUp" style="animation-delay: ${Math.random() * 0.5}s">
                                 <!-- Contenedor de la imagen (más alto que antes) -->
-                                <div class="w-full h-48 bg-zinc-200">
-                                    <img src="${imageSrc}" alt="${memory.title}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/f7f6f8/a65eed?text=Error:('; this.alt='Error al cargar imagen';">
+                                <!-- ¡NUEVO! Se añadió overflow-hidden aquí -->
+                                <div class="w-full h-48 bg-zinc-200 overflow-hidden">
+                                    <!-- ¡NUEVO! Se añadieron estilos en línea para zoom y object-position -->
+                                    <img src="${imageSrc}" 
+                                         alt="${memory.title}" 
+                                         class="w-full h-full object-cover transition-transform duration-300 ease-out hover:scale-105" 
+                                         style="transform: scale(${zoom}); object-position: ${offsetX} ${offsetY};"
+                                         onerror="this.src='https://placehold.co/600x400/f7f6f8/a65eed?text=Error:('; this.alt='Error al cargar imagen';">
                                 </div>
                                 <!-- Contenido de texto -->
                                 <div class="p-4">
@@ -478,8 +500,9 @@
                     });
 
                 } catch (error) {
+                    // ¡CAMBIO! El mensaje de error ahora es para el 'fetch'
                     console.error('Error al cargar el archivo JSON de memorias:', error);
-                    container.innerHTML = '<p class="text-center text-red-500">No se pudieron cargar los recuerdos. Intenta de nuevo más tarde.</p>';
+                    container.innerHTML = '<p class="text-center text-red-500">No se pudieron cargar los recuerdos. Revisa la URL del JSON.</p>';
                 }
             }
 
