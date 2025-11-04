@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+<html class="light" lang="es"> <!-- Cambiado a 'es' -->
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Our First Year</title>
+    <title>Nuestro Primer Año</title> <!-- Traducido -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
@@ -14,6 +14,9 @@
     
     <!-- Carga principal de Iconos de Material Symbols -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <!-- AÑADIDO: Tone.js para la música -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
     <style>
         .font-serif-display {
@@ -213,18 +216,18 @@
                     <span class="material-symbols-outlined text-5xl popup-highlight">favorite</span>
                 </div>
                 <h1 class="font-script text-[var(--popup-text-color)] text-4xl font-bold tracking-tight leading-tight">
-                    A Year of Our Beautiful Journey
+                    Un Año de Nuestro Hermoso Viaje <!-- Traducido -->
                 </h1>
                 <div class="mt-8 mb-4 text-lg">
-                    <p class="popup-text-secondary font-bold">To my dearest:</p>
+                    <p class="popup-text-secondary font-bold">Para mi amada:</p> <!-- Traducido -->
                     <p class="font-script text-3xl font-bold text-primary-darker mt-1.5">Nurialys Castillo Alers</p>
                 </div>
                 <p class="mt-6 mb-2 text-lg font-bold">
-                    <span class="bg-[#F5F3F7] text-[#673AB7] px-6 py-3 rounded-full tracking-wider" style="box-shadow: 6px 6px 12px #e0dde4, -6px -6px 12px #ffffff, inset 2px 2px 4px #e0dde4, inset -2px -2px 4px #ffffff;">November 23 2025</span>
+                    <span class="bg-[#F5F3F7] text-[#673AB7] px-6 py-3 rounded-full tracking-wider" style="box-shadow: 6px 6px 12px #e0dde4, -6px -6px 12px #ffffff, inset 2px 2px 4px #e0dde4, inset -2px -2px 4px #ffffff;">Noviembre 23 2025</span>
                 </p>
                 <!-- Botón adaptado a <button> para que funcione el JS -->
                 <button id="closePopup" class="mt-8 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-[var(--button-bg-color)] text-[var(--button-text-color)] text-xl font-bold tracking-[0.015em] shadow-lg shadow-purple-500/30 transition-all duration-200 ease-in-out active:scale-95 hover:bg-[var(--button-hover-bg)]">
-                    <span class="truncate font-bold">TE AMO</span>
+                    <span class="truncate font-bold">TE AMO</span> <!-- Mantenido -->
                 </button>
             </div>
         </div>
@@ -240,7 +243,7 @@
                     <span class="text-2xl">❤️</span>
                 </button>
             </div>
-            <h2 class="text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">One Thousand More</h2>
+            <h2 class="text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Mil Años Más</h2> <!-- Traducido -->
             <div class="flex w-12 items-center justify-end">
                 <!-- Botón de Fresa -->
                 <button id="strawberryButton" class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-primary/10 transition-colors">
@@ -256,7 +259,7 @@
             <div class="relative mb-6 mt-4 rounded-xl border-4 border-primary/50 bg-white p-3 shadow-lg flex flex-col items-center justify-center text-center text-zinc-900">
                 <div class="absolute inset-0 scale-105 bg-primary/20 rounded-xl blur-2xl opacity-60"></div>
                 <div class="relative z-10 w-full flex flex-col items-center justify-center">
-                    <p class="text-sm font-medium text-primary mb-1">Our next anniversary</p>
+                    <p class="text-sm font-medium text-primary mb-1">Nuestro próximo aniversario</p> <!-- Traducido -->
                     <div class="flex items-baseline justify-center gap-x-1.5 text-zinc-900 flex-wrap px-2">
                         <!-- IDs para el countdown -->
                         <span id="countdown-days" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">d</span>
@@ -265,7 +268,7 @@
                         <span id="countdown-seconds" class="text-2xl font-bold tracking-tighter">0</span><span class="text-sm font-medium text-zinc-500">s</span>
                     </div>
                     <div class="mt-3 w-full bg-primary/10 rounded-md py-2 px-4 text-sm text-zinc-700">
-                        <p>Celebrating every precious moment.</p>
+                        <p>Celebrando cada precioso momento.</p> <!-- Traducido -->
                     </div>
                 </div>
             </div>
@@ -279,8 +282,8 @@
                     </div>
                     <div class="p-4">
                         <p class="text-xs text-zinc-500 mb-1">Nov 23, 2023</p>
-                        <h3 class="font-semibold text-zinc-900">Our First Anniversary!</h3>
-                        <p class="text-sm text-zinc-700 mt-2">A sweet day marking the beginning of our journey. Remember the cake and the laughter!</p>
+                        <h3 class="font-semibold text-zinc-900">¡Nuestro Primer Aniversario!</h3> <!-- Traducido -->
+                        <p class="text-sm text-zinc-700 mt-2">Un dulce día marcando el inicio de nuestro viaje. ¡Recuerda el pastel y las risas!</p> <!-- Traducido -->
                     </div>
                 </div>
 
@@ -290,8 +293,8 @@
                     </div>
                     <div class="p-4">
                         <p class="text-xs text-zinc-500 mb-1">Oct 15, 2023</p>
-                        <h3 class="font-semibold text-zinc-900">Weekend Getaway</h3>
-                        <p class="text-sm text-zinc-700 mt-2">Explored new places and made unforgettable memories. The sunrise hike was amazing!</p>
+                        <h3 class="font-semibold text-zinc-900">Escapada de Fin de Semana</h3> <!-- Traducido -->
+                        <p class="text-sm text-zinc-700 mt-2">Exploramos nuevos lugares e hicimos recuerdos inolvidables. ¡La caminata al amanecer fue increíble!</p> <!-- Traducido -->
                     </div>
                 </div>
 
@@ -301,8 +304,8 @@
                     </div>
                     <div class="p-4">
                         <p class="text-xs text-zinc-500 mb-1">Aug 01, 2023</p>
-                        <h3 class="font-semibold text-zinc-900">First Home-cooked Dinner</h3>
-                        <p class="text-sm text-zinc-700 mt-2">Enjoyed a cozy evening with our favorite dishes. Your lasagna was incredible!</p>
+                        <h3 class="font-semibold text-zinc-900">Primera Cena Hecha en Casa</h3> <!-- Traducido -->
+                        <p class="text-sm text-zinc-700 mt-2">Disfrutamos una noche acogedora con nuestros platos favoritos. ¡Tu lasaña estaba increíble!</p> <!-- Traducido -->
                     </div>
                 </div>
 
@@ -312,8 +315,8 @@
                     </div>
                     <div class="p-4">
                         <p class="text-xs text-zinc-500 mb-1">Jun 20, 2023</p>
-                        <h3 class="font-semibold text-zinc-900">Surprise Gift</h3>
-                        <p class="text-sm text-zinc-700 mt-2">Received the most thoughtful present! I still cherish it every day.</p>
+                        <h3 class="font-semibold text-zinc-900">Regalo Sorpresa</h3> <!-- Traducido -->
+                        <p class="text-sm text-zinc-700 mt-2">¡Recibí el regalo más considerado! Todavía lo atesoro cada día.</p> <!-- Traducido -->
                     </div>
                 </div>
 
@@ -323,8 +326,8 @@
                     </div>
                     <div class="p-4">
                         <p class="text-xs text-zinc-500 mb-1">Apr 10, 2023</p>
-                        <h3 class="font-semibold text-zinc-900">Spring Picnic</h3>
-                        <p class="text-sm text-zinc-700 mt-2">A perfect day at the park, full of laughter and sunshine. Remember the frisbee?</p>
+                        <h3 class="font-semibold text-zinc-900">Picnic de Primavera</h3> <!-- Traducido -->
+                        <p class="text-sm text-zinc-700 mt-2">Un día perfecto en el parque, lleno de risas y sol. ¿Recuerdas el frisbee?</p> <!-- Traducido -->
                     </div>
                 </div>
 
@@ -334,8 +337,8 @@
                     </div>
                     <div class="p-4">
                         <p class="text-xs text-zinc-500 mb-1">Feb 14, 2023</p>
-                        <h3 class="font-semibold text-zinc-900">Valentine's Day Date</h3>
-                        <p class="text-sm text-zinc-700 mt-2">Romantic dinner and sweet conversations. The best Valentine's ever!</p>
+                        <h3 class="font-semibold text-zinc-900">Cita de San Valentín</h3> <!-- Traducido -->
+                        <p class="text-sm text-zinc-700 mt-2">Cena romántica y dulces conversaciones. ¡El mejor San Valentín!</p> <!-- Traducido -->
                     </div>
                 </div>
             </div>
@@ -374,9 +377,83 @@
             const popup = document.getElementById('welcome-popup');
             const closePopupButton = document.getElementById('closePopup');
             const mainContent = document.getElementById('main-content-wrapper');
+            
+            // AÑADIDO: Inicializar el sintetizador de Tone.js
+            const synth = new Tone.Synth().toDestination();
+            const melody = [
+                ['C4', '8n'], ['E4', '8n'], ['G4', '8n'], ['C5', '4n']
+            ];
+
+            // NUEVO: Sintetizador para un sonido de clic limpio y moderno
+            const clickSynth = new Tone.Synth({
+                oscillator: {
+                    type: "sine" // Onda sinusoidal limpia
+                },
+                envelope: {
+                    attack: 0.001,
+                    decay: 0.01,
+                    sustain: 0,
+                    release: 0.05 // Muy corto
+                }
+            }).toDestination();
+
+            // NUEVO: Sintetizador para el sonido "bubble pop" (reemplaza explosionSynth)
+            const popSynth = new Tone.MembraneSynth({
+                pitchDecay: 0.01, // Caída de tono muy rápida
+                octaves: 4,       // Rango de la caída de tono
+                oscillator: {
+                    type: "sine"  // Tono limpio
+                },
+                envelope: {
+                    attack: 0.001,
+                    decay: 0.1,   // Sonido corto
+                    sustain: 0,
+                    release: 0.05
+                }
+            }).toDestination();
+
+
+            // NUEVO: Función para reproducir el sonido de clic
+            function playClickSound() {
+                try {
+                    // Tocar una nota corta y aguda
+                    clickSynth.triggerAttackRelease("C6", "50n");
+                } catch (e) {
+                    console.error("Error al reproducir el sonido de clic:", e);
+                }
+            }
+
+            // NUEVO: Función para reproducir el sonido "pop" (reemplaza playExplosionSound)
+            function playExplosionSound() {
+                try {
+                    const now = Tone.now();
+                    // Tocar una nota aguda que caerá rápido para el "pop"
+                    popSynth.triggerAttackRelease("G4", "32n", now);
+                } catch (e) {
+                    console.error("Error al reproducir el sonido de explosión:", e);
+                }
+            }
+
 
             if (popup && closePopupButton && mainContent) {
-                closePopupButton.addEventListener('click', () => {
+                // CORREGIDO: Cambiado de ()async => a async () =>
+                closePopupButton.addEventListener('click', async () => {
+                    
+                    // AÑADIDO: Iniciar el audio y tocar la melodía
+                    try {
+                        await Tone.start(); // Pedir permiso de audio
+                        
+                        // REEMPLAZADO: Se quita la melodía y se pone el clic
+                        // const now = Tone.now();
+                        // melody.forEach(([note, duration], i) => {
+                        //     synth.triggerAttackRelease(note, duration, now + i * 0.2);
+                        // });
+                        playClickSound();
+
+                    } catch (e) {
+                        console.error("Error al reproducir audio:", e);
+                    }
+
                     // Ocultar el popup con la animación de fade-out
                     popup.classList.remove('animate-backdropIn'); // Quitar animación de entrada
                     popup.classList.add('animate-fadeOut'); // Añadir animación de salida
@@ -446,6 +523,7 @@
 
             if (strawberryButton && rainContainer && heartContainer) {
                 strawberryButton.addEventListener('click', () => {
+                    playClickSound(); // <-- AÑADIDO
                     consecutiveClicks++;
                     if (clickTimer) clearTimeout(clickTimer);
 
@@ -486,34 +564,32 @@
 
             function createStrawberryHeart() {
                 const heartPattern = [
-                    "    ****** ******",
-                    "    ****** ******",
-                    "  ********** **********",
-                    "  ********** **********",
-                    " ************* *************",
-                    "*****************************",
-                    "*****************************",
-                    "*****************************",
-                    "*****************************",
-                    " ***************************",
-                    " ***************************",
-                    "   ***********************",
-                    "   ***********************",
-                    "     *******************",
-                    "     *******************",
-                    "       ***************",
-                    "       ***************",
-                    "         ***********",
-                    "         ***********",
-                    "           *******",
-                    "           *******",
-                    "             ***",
-                    "             ***",
-                    "              *"
+                    "    * * *         * * *",
+                    "   * * * *       * * * *",
+                    "  * * * * *     * * * * *",
+                    "  * * * * *     * * * * *",
+                    " * * * * * *   * * * * * *",
+                    "* * * * * * * * * * * * * *",
+                    "* * * * * * * * * * * * * *",
+                    "* * * * * * * * * * * * * *",
+                    "* * * * * * * * * * * * * *",
+                    " * * * * * * * * * * * * *",
+                    " * * * * * * * * * * * * *",
+                    "   * * * * * * * * * * *",
+                    "   * * * * * * * * * * *",
+                    "     * * * * * * * * *",
+                    "     * * * * * * * * *",
+                    "       * * * * * * *",
+                    "       * * * * * * *",
+                    "         * * * * *",
+                    "         * * * * *",
+                    "           * * *",
+                    "            * *",
+                    "             *"
                 ];
 
                 const scale = 13; // Hecho más compacto
-                const strawberrySize = 1.5;
+                const strawberrySize = 1.9;
                 const delayBetweenFresas = 10; // Dibujar rápido
 
                 const maxWidth = heartPattern.reduce((max, r) => Math.max(max, r.length), 0);
@@ -549,6 +625,7 @@
             }
 
             function explodeHeart() {
+                playExplosionSound(); // <-- AÑADIDO (reemplaza playSparkleSound)
                 const strawberries = heartContainer.querySelectorAll('.strawberry-heart-piece');
                 strawberries.forEach((strawberry, index) => {
                     const angle = Math.random() * Math.PI * 2;
@@ -767,13 +844,16 @@
                     }
                 }
 
-                // Abrir el modal
+// Abrir el modal
                 heartButton.addEventListener('click', openModal);
+                heartButton.addEventListener('click', playClickSound); // <-- AÑADIDO
 
                 // Cerrar el modal (con click y touch)
                 closeHeartModal.addEventListener('click', closeModal);
+                closeHeartModal.addEventListener('click', playClickSound); // <-- AÑADIDO
                 closeHeartModal.addEventListener('touchstart', (e) => {
                     e.preventDefault(); // Evitar "click" fantasma
+                    playClickSound(); // <-- AÑADIDO
                     closeModal();
                 }, { passive: false });
 
@@ -853,4 +933,3 @@
 
 </body>
 </html>
-
