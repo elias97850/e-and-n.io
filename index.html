@@ -273,75 +273,12 @@
                 </div>
             </div>
 
-            <!-- Lista de tarjetas -->
-            <div class="grid grid-cols-1 gap-6 py-4">
-
-                <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
-                        <span class="material-symbols-outlined text-4xl">calendar_today</span>
-                    </div>
-                    <div class="p-4">
-                        <p class="text-xs text-zinc-500 mb-1">Nov 23, 2023</p>
-                        <h3 class="font-semibold text-zinc-900">¡Nuestro Primer Aniversario!</h3> <!-- Traducido -->
-                        <p class="text-sm text-zinc-700 mt-2">Un dulce día marcando el inicio de nuestro viaje. ¡Recuerda el pastel y las risas!</p> <!-- Traducido -->
-                    </div>
-                </div>
-
-                <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
-                        <span class="material-symbols-outlined text-4xl">emoji_events</span>
-                    </div>
-                    <div class="p-4">
-                        <p class="text-xs text-zinc-500 mb-1">Oct 15, 2023</p>
-                        <h3 class="font-semibold text-zinc-900">Escapada de Fin de Semana</h3> <!-- Traducido -->
-                        <p class="text-sm text-zinc-700 mt-2">Exploramos nuevos lugares e hicimos recuerdos inolvidables. ¡La caminata al amanecer fue increíble!</p> <!-- Traducido -->
-                    </div>
-                </div>
-
-                <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
-                        <span class="material-symbols-outlined text-4xl">favorite</span>
-                    </div>
-                    <div class="p-4">
-                        <p class="text-xs text-zinc-500 mb-1">Aug 01, 2023</p>
-                        <h3 class="font-semibold text-zinc-900">Primera Cena Hecha en Casa</h3> <!-- Traducido -->
-                        <p class="text-sm text-zinc-700 mt-2">Disfrutamos una noche acogedora con nuestros platos favoritos. ¡Tu lasaña estaba increíble!</p> <!-- Traducido -->
-                    </div>
-                </div>
-
-                <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
-                        <span class="material-symbols-outlined text-4xl">redeem</span>
-                    </div>
-                    <div class="p-4">
-                        <p class="text-xs text-zinc-500 mb-1">Jun 20, 2023</p>
-                        <h3 class="font-semibold text-zinc-900">Regalo Sorpresa</h3> <!-- Traducido -->
-                        <p class="text-sm text-zinc-700 mt-2">¡Recibí el regalo más considerado! Todavía lo atesoro cada día.</p> <!-- Traducido -->
-                    </div>
-                </div>
-
-                <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
-                        <span class="material-symbols-outlined text-4xl">park</span>
-                    </div>
-                    <div class="p-4">
-                        <p class="text-xs text-zinc-500 mb-1">Apr 10, 2023</p>
-                        <h3 class="font-semibold text-zinc-900">Picnic de Primavera</h3> <!-- Traducido -->
-                        <p class="text-sm text-zinc-700 mt-2">Un día perfecto en el parque, lleno de risas y sol. ¿Recuerdas el frisbee?</p> <!-- Traducido -->
-                    </div>
-                </div>
-
-                <div class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-                    <div class="w-full h-32 bg-zinc-200 flex items-center justify-center text-zinc-500">
-                        <span class="material-symbols-outlined text-4xl">celebration</span>
-                    </div>
-                    <div class="p-4">
-                        <p class="text-xs text-zinc-500 mb-1">Feb 14, 2023</p>
-                        <h3 class="font-semibold text-zinc-900">Cita de San Valentín</h3> <!-- Traducido -->
-                        <p class="text-sm text-zinc-700 mt-2">Cena romántica y dulces conversaciones. ¡El mejor San Valentín!</p> <!-- Traducido -->
-                    </div>
-                </div>
+            <!-- Lista de tarjetas (AHORA SE GENERA CON JS) -->
+            <!-- Le damos un ID para seleccionarlo fácilmente -->
+            <div id="memories-list-container" class="grid grid-cols-1 gap-6 py-4">
+                <!-- Las tarjetas se cargarán aquí... -->
             </div>
+
         </main>
 
         <!-- Contenedores de Animaciones -->
@@ -442,12 +379,6 @@
                     // AÑADIDO: Iniciar el audio y tocar la melodía
                     try {
                         await Tone.start(); // Pedir permiso de audio
-                        
-                        // REEMPLAZADO: Se quita la melodía y se pone el clic
-                        // const now = Tone.now();
-                        // melody.forEach(([note, duration], i) => {
-                        //     synth.triggerAttackRelease(note, duration, now + i * 0.2);
-                        // });
                         playClickSound();
 
                     } catch (e) {
@@ -462,6 +393,9 @@
                         popup.style.display = 'none';
                         // Mostrar el contenido principal
                         mainContent.style.display = 'flex';
+                        
+                        // Cargar las memorias DESPUÉS de mostrar el contenido principal
+                        loadMemories(); 
                     }, 500); // Sincronizar con la transición
                 });
             } else {
@@ -469,7 +403,86 @@
                 // Si algo falla, ocultar el popup y mostrar la app para que no se bloquee
                 if (popup) popup.style.display = 'none';
                 if (mainContent) mainContent.style.display = 'flex';
+                // Cargar memorias incluso si el popup falla
+                loadMemories();
             }
+
+            // === LÓGICA DE CARGA DE MEMORIAS (NUEVO) ===
+
+            /**
+             * Convierte una URL de Google Drive 'view' a una URL de imagen directa.
+             * @param {string} driveURL - La URL de Google Drive (ej. .../file/d/FILE_ID/view)
+             * @returns {string} La URL de la imagen directa (ej. https://lh3.googleusercontent.com/d/FILE_ID)
+             */
+            function getGoogleDriveImageURL(driveURL) {
+                // Expresión regular para extraer el FILE_ID de varios formatos de URL de Drive
+                const fileIdMatch = driveURL.match(/file\/d\/([a-zA-Z0-9_-]{28,})/);
+                if (fileIdMatch && fileIdMatch[1]) {
+                    const fileId = fileIdMatch[1];
+                    return `https://lh3.googleusercontent.com/d/${fileId}`;
+                }
+                
+                // Fallback por si la URL ya es directa o tiene otro formato (aunque para tu JSON, la de arriba funcionará)
+                console.warn("No se pudo extraer el File ID de:", driveURL, ". Usando la URL original.");
+                return driveURL;
+            }
+
+            /**
+             * Carga las memorias desde el JSON y las muestra en la página.
+             */
+            async function loadMemories() {
+                // IMPORTANTE: Reemplaza esta URL con la URL "raw" de tu archivo en GitHub
+                const memoriesURL = './memories.json'; 
+                
+                const container = document.getElementById('memories-list-container');
+                if (!container) {
+                    console.error('Error: No se encontró el contenedor "memories-list-container".');
+                    return;
+                }
+
+                // Mostrar un estado de carga (opcional pero recomendado)
+                container.innerHTML = '<p class="text-center text-zinc-500">Cargando recuerdos...</p>';
+
+                try {
+                    const response = await fetch(memoriesURL);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const memories = await response.json();
+
+                    // Limpiar el contenedor (quitar el "Cargando...")
+                    container.innerHTML = '';
+
+                    // Crear y añadir cada tarjeta
+                    memories.forEach(memory => {
+                        // Convertir la URL de Google Drive
+                        const imageSrc = getGoogleDriveImageURL(memory.image);
+
+                        // Crear el HTML de la tarjeta
+                        const cardHTML = `
+                            <div class="w-full bg-white shadow-md rounded-lg overflow-hidden animate-fadeInUp" style="animation-delay: ${Math.random() * 0.5}s">
+                                <!-- Contenedor de la imagen (más alto que antes) -->
+                                <div class="w-full h-48 bg-zinc-200">
+                                    <img src="${imageSrc}" alt="${memory.title}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/f7f6f8/a65eed?text=Error:('; this.alt='Error al cargar imagen';">
+                                </div>
+                                <!-- Contenido de texto -->
+                                <div class="p-4">
+                                    <p class="text-xs text-zinc-500 mb-1">${memory.date}</p>
+                                    <h3 class="font-semibold text-zinc-900">${memory.title}</h3>
+                                    <p class="text-sm text-zinc-700 mt-2">${memory.subtitle}</p>
+                                </div>
+                            </div>
+                        `;
+                        // Añadir la tarjeta al contenedor
+                        container.innerHTML += cardHTML;
+                    });
+
+                } catch (error) {
+                    console.error('Error al cargar el archivo JSON de memorias:', error);
+                    container.innerHTML = '<p class="text-center text-red-500">No se pudieron cargar los recuerdos. Intenta de nuevo más tarde.</p>';
+                }
+            }
+
 
             // === LÓGICA DEL COUNTDOWN ===
             const targetDate = new Date("2026-11-25T00:00:00").getTime();
@@ -564,11 +577,11 @@
 
             function createStrawberryHeart() {
                 const heartPattern = [
-                    "    * * *         * * *",
-                    "   * * * *       * * * *",
-                    "  * * * * *     * * * * *",
-                    "  * * * * *     * * * * *",
-                    " * * * * * *   * * * * * *",
+                    "    * * * * * *",
+                    "   * * * * * * * *",
+                    "  * * * * * * * * * *",
+                    "  * * * * * * * * * *",
+                    " * * * * * * * * * * * *",
                     "* * * * * * * * * * * * * *",
                     "* * * * * * * * * * * * * *",
                     "* * * * * * * * * * * * * *",
@@ -844,7 +857,7 @@
                     }
                 }
 
-// Abrir el modal
+                // Abrir el modal
                 heartButton.addEventListener('click', openModal);
                 heartButton.addEventListener('click', playClickSound); // <-- AÑADIDO
 
