@@ -433,10 +433,10 @@
             // ¡CAMBIO! Se restauró 'async' para que funcione 'await fetch'
             async function loadMemories() {
                 
-                // ¡CAMBIO! Se actualizó la URL para que sea una ruta relativa.
-                // Esto funcionará en GitHub Pages si 'memories.json' está en la misma carpeta.
+                // ¡CAMBIO! Esta es la URL relativa que funcionará en GitHub Pages
+                // porque 'memories.json' está en la misma carpeta.
                 const memoriesURL = './memories.json'; 
-                
+
                 // ¡CAMBIO! Se eliminó el array 'const memories = [...]' de aquí.
 
                 const container = document.getElementById('memories-list-container');
@@ -445,7 +445,7 @@
                     return;
                 }
 
-                // Mostrar un estado de carga (opcional pero recomendado)
+                // Mostrar un estado de carga
                 container.innerHTML = '<p class="text-center text-zinc-500">Cargando recuerdos...</p>';
 
                 try {
@@ -456,7 +456,7 @@
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const memories = await response.json();
-                    
+
                     // Limpiar el contenedor (quitar el "Cargando...")
                     container.innerHTML = '';
 
@@ -869,8 +869,8 @@
                 }
 
                 function closeModal() {
-                    heartModalBackdrop.classList.remove('modal-visible');
-                    heartModalBackdrop.classList.add('modal-hidden');
+                    heartModalBackdrop.classList.remove('visible');
+                    heartModalBackdrop.classList.add('hidden');
                     document.body.style.overflow = ''; 
                     if (heart_animationId) {
                         cancelAnimationFrame(heart_animationId); 
