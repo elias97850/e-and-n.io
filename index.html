@@ -306,6 +306,15 @@
         </div>
     </div>
 
+    <!-- ===== POPUP DE AFIRMACIÓN (NUEVO) ===== -->
+    <div id="affirmationPopup" 
+         class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 w-[90%] max-w-xs p-4
+                bg-white rounded-xl shadow-2xl shadow-primary/20 border-2 border-primary/30
+                text-center modal-hidden"> <!-- Reutilizamos clases de animación -->
+        <span class="text-3xl">💖</span>
+        <p id="affirmationText" class="text-lg font-semibold text-zinc-700 mt-2"></p>
+    </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -435,7 +444,7 @@
                 
                 // ¡CAMBIO! Esta es la URL relativa que funcionará en GitHub Pages
                 // porque 'memories.json' está en la misma carpeta.
-                const memoriesURL = 'https://raw.githubusercontent.com/elias97850/e-and-n.io/main/memories.json';
+                const memoriesURL = './memories.json'; 
 
                 // ¡CAMBIO! Se eliminó el array 'const memories = [...]' de aquí.
 
@@ -719,6 +728,49 @@
             const heartDisplayPre = document.getElementById('heart-display');
             const heartModalContainer = document.getElementById('heartModalContainer'); 
 
+            // --- NUEVO: Lógica de Afirmaciones y Toque Largo ---
+            const affirmationPopup = document.getElementById('affirmationPopup');
+            const affirmationText = document.getElementById('affirmationText');
+            
+            const affirmations = [
+                "Eres mi persona favorita.",
+                "Me encanta crear recuerdos contigo.",
+                "Eres la razón de mi sonrisa.",
+                "Te amo más cada día.",
+                "Nuestro amor es mi mayor tesoro.",
+                "Contigo, todo es mejor.",
+                "Eres mi 'para siempre'.",
+                "Mi lugar favorito es a tu lado."
+            ];
+
+            let longPressTimer = null;
+            let isLongPress = false;
+            const longPressDuration = 800; // 800ms para toque largo
+
+            // Función para mostrar una afirmación
+            let affirmationHideTimer = null;
+            function showAffirmation() {
+                if (affirmationHideTimer) {
+                    clearTimeout(affirmationHideTimer); // Limpiar timer anterior si existe
+                }
+                
+                // Seleccionar una afirmación al azar
+                const randomIndex = Math.floor(Math.random() * affirmations.length);
+                affirmationText.textContent = affirmations[randomIndex];
+                
+                // Mostrar el popup
+                affirmationPopup.classList.remove('modal-hidden');
+                affirmationPopup.classList.add('modal-visible');
+
+                // Ocultar automáticamente después de 2.5 segundos
+                affirmationHideTimer = setTimeout(() => {
+                    affirmationPopup.classList.remove('modal-visible');
+                    affirmationPopup.classList.add('modal-hidden');
+                }, 2500);
+            }
+            // --- FIN DE LA NUEVA LÓGICA DE AFIRMACIONES ---
+
+
             if (heartButton && heartModalBackdrop && closeHeartModal && heartDisplayPre && heartModalContainer) {
 
                 // --- Constantes y variables globales del Corazón 3D ---
@@ -880,9 +932,55 @@
                     }
                 }
 
-                // Abrir el modal
-                heartButton.addEventListener('click', openModal);
-                heartButton.addEventListener('click', playClickSound); // <-- AÑADIDO
+                // --- REEMPLAZADO: Listeners del botón de corazón ---
+                // Se eliminaron:
+                // heartButton.addEventListener('click', openModal);
+                // heartButton.addEventListener('click', playClickSound);
+
+                // --- NUEVO: Lógica de Toque Corto vs. Toque Largo ---
+                heartButton.addEventListener('mousedown', (e) => {
+                    isLongPress = false; // Resetear
+                    longPressTimer = setTimeout(() => {
+                        isLongPress = true;
+                        playClickSound();
+                        openModal(); // Abrir easter egg
+                    }, longPressDuration);
+                });
+                heartButton.addEventListener('touchstart', (e) => {
+                    isLongPress = false; // Resetear
+                    longPressTimer = setTimeout(() => {
+                        isLongPress = true;
+                        playClickSound();
+                        openModal(); // Abrir easter egg
+                    }, longPressDuration);
+                }, { passive: true });
+
+                heartButton.addEventListener('mouseup', (e) => {
+                    clearTimeout(longPressTimer); // Cancelar el toque largo
+                    if (!isLongPress) {
+                        // Es un clic/toque corto
+                        playClickSound();
+                        showAffirmation();
+                    }
+                });
+                heartButton.addEventListener('touchend', (e) => {
+                    clearTimeout(longPressTimer); // Cancelar el toque largo
+                    if (!isLongPress) {
+                        // Es un clic/toque corto
+                        playClickSound();
+                        showAffirmation();
+                    }
+                });
+
+                // Cancelar si el mouse/dedo se va
+                heartButton.addEventListener('mouseleave', () => {
+                    clearTimeout(longPressTimer);
+                });
+                heartButton.addEventListener('touchcancel', () => {
+                    clearTimeout(longPressTimer);
+                });
+                // --- FIN DE LA NUEVA LÓGICA ---
+
 
                 // Cerrar el modal (con click y touch)
                 closeHeartModal.addEventListener('click', closeModal);
