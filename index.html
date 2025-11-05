@@ -405,6 +405,7 @@
                         
                         // Cargar las memorias DESPUÉS de mostrar el contenido principal
                         loadMemories(); 
+                        loadAffirmations(); // <-- AÑADIDO
                     }, 500); // Sincronizar con la transición
                 });
             } else {
@@ -414,6 +415,7 @@
                 if (mainContent) mainContent.style.display = 'flex';
                 // Cargar memorias incluso si el popup falla
                 loadMemories();
+                loadAffirmations(); // <-- AÑADIDO
             }
 
             // === LÓGICA DE CARGA DE MEMORIAS (NUEVO) ===
@@ -607,11 +609,11 @@
 
             function createStrawberryHeart() {
                 const heartPattern = [
-                    "    * * *         * * *",
-                    "   * * * *       * * * *",
-                    "  * * * * *     * * * * *",
-                    "  * * * * *     * * * * *",
-                    " * * * * * *   * * * * * *",
+                    "    * * * * * *",
+                    "   * * * * * * * *",
+                    "  * * * * * * * * * *",
+                    "  * * * * * * * * * *",
+                    " * * * * * * * * * * * *",
                     "* * * * * * * * * * * * * *",
                     "* * * * * * * * * * * * * *",
                     "* * * * * * * * * * * * * *",
@@ -732,16 +734,24 @@
             const affirmationPopup = document.getElementById('affirmationPopup');
             const affirmationText = document.getElementById('affirmationText');
             
-            const affirmations = [
-                "Eres mi persona favorita.",
-                "Me encanta crear recuerdos contigo.",
-                "Eres la razón de mi sonrisa.",
-                "Te amo más cada día.",
-                "Nuestro amor es mi mayor tesoro.",
-                "Contigo, todo es mejor.",
-                "Eres mi 'para siempre'.",
-                "Mi lugar favorito es a tu lado."
-            ];
+            // ¡CAMBIO! Array ahora es una variable global que se cargará
+            let affirmations = []; 
+
+            // ¡NUEVA FUNCIÓN! Para cargar las afirmaciones desde el JSON
+            async function loadAffirmations() {
+                const affirmationsURL = './affirmations.json';
+                try {
+                    const response = await fetch(affirmationsURL);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    affirmations = await response.json(); // Cargar en la variable global
+                } catch (error) {
+                    console.error('Error al cargar el archivo JSON de afirmaciones:', error);
+                    // Poner un fallback por si falla la carga en GitHub
+                    affirmations = ["Error al cargar las afirmaciones."];
+                }
+            }
 
             let longPressTimer = null;
             let isLongPress = false;
@@ -754,9 +764,15 @@
                     clearTimeout(affirmationHideTimer); // Limpiar timer anterior si existe
                 }
                 
-                // Seleccionar una afirmación al azar
-                const randomIndex = Math.floor(Math.random() * affirmations.length);
-                affirmationText.textContent = affirmations[randomIndex];
+                // ¡CAMBIO! Comprobar si las afirmaciones se han cargado
+                if (affirmations.length === 0) {
+                    // Mensaje mientras carga o si falló
+                    affirmationText.textContent = "Cargando..."; 
+                } else {
+                    // Seleccionar una afirmación al azar
+                    const randomIndex = Math.floor(Math.random() * affirmations.length);
+                    affirmationText.textContent = affirmations[randomIndex];
+                }
                 
                 // Mostrar el popup
                 affirmationPopup.classList.remove('modal-hidden');
