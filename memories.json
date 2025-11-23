@@ -1,30 +1,290 @@
 [
   {
-    "image": "https://drive.google.com/file/d/1DeoxMcCffx_dDitUlAVTvppeOWF3XDfw/view?usp=drivesdk0",
-    "date": "Nov 23, 2023",
-    "title": "¡Nuestro Primer Aniversario!",
-    "subtitle": "Un dulce día marcando el inicio de nuestro viaje. ¡Recuerda el pastel y las risas!",
+    "image": "https://drive.google.com/file/d/1Tz75C6fTq0ToskqxZLlVhItCrVJ2WeM6/view?usp=sharing",
+    "date": "Sep 22, 2024",
+    "title": "Primera foto",
+    "subtitle": "",
     "zoom": 1,
     "offsetX": "50%",
-    "offsetY": "35%",
-    "comment": "zoom: 1 = normal, offsetX: 0%=izq,50%=mid,100%=right, offsetY: 0%=top,50%=mid,100%=bottom"
+    "offsetY": "50%"
   },
   {
-    "image": "https://drive.google.com/file/d/19kXA4EwU0AAIDRqtnCacCBGVUj17yJ4B/view?usp=drivesdk",
-    "date": "Oct 15, 2023",
-    "title": "Escapada de Fin de Semana",
-    "subtitle": "Exploramos nuevos lugares e hicimos recuerdos inolvidables. ¡La caminata al amanecer fue increíble!",
-    "zoom": 1.15,
-    "offsetX": "50%",
-    "offsetY": "57%"
-  },
-  {
-    "image": "https://drive.google.com/file/d/15j992kRVC7B9DYZmj3vjtlwyAJK9KCWf/view?usp=drivesdk",
-    "date": "Aug 01, 2023",
-    "title": "Primera Cena Hecha en Casa",
-    "subtitle": "Disfrutamos una noche acogedora con nuestros platos favoritos. ¡Tu lasaña estaba increíble!",
+    "image": "https://drive.google.com/file/d/1DCvxy84_8Sy_xfrIP-Of7fWbdq8LqAhy/view?usp=sharing",
+    "date": "Sep 22, 2024",
+    "title": "Nuestra primera actividad creativa",
+    "subtitle": "",
     "zoom": 1,
     "offsetX": "50%",
-    "offsetY": "15%"
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1DQEQPEPPOC6hlEv8IAQXLsiCTGZb8fzl/view?usp=sharing",
+    "date": "Sep 28, 2024",
+    "title": "Primera visita al mirador como modelos",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1d6LskrnHdEkSJ4zL5xAUHWcpaA81IE5d/view?usp=sharing",
+    "date": "Oct 13, 2024",
+    "title": "Nuestro primer restaurante (labios hinchados)",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1RBjTuxQmGfSa1lXMnWm6qrfC4aLlS9kN/view?usp=sharing",
+    "date": "Nov 5, 2024",
+    "title": "Bolera",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1wdphcbtCsbLzzdxr6cHCC9FyHkdlN4bd/view?usp=sharing",
+    "date": "Nov 23, 2024",
+    "title": "Novios!",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1bjUl6raouT6TM4_KCKltiMVZEMVHwSDZ/view?usp=sharing",
+    "date": "Nov 25, 2024",
+    "title": "Faro y atardecer",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1KxcUtUAr_ZlmfYFGLQ8P5BYD-13Zv3CL/view?usp=sharing",
+    "date": "Dec 5, 2024",
+    "title": "Visita a Wendy's despues de dia de Capstone",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1Eq2JnU0R8w_3O9zQFD018tk6LjYNRDPT/view?usp=sharing",
+    "date": "Dec 14, 2024",
+    "title": "Visita a el Parque de las Ciencias",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1IuvLvCGbXJf0NP-E1mn4aVxZ-cfeDXLr/view?usp=sharing",
+    "date": "Dec 20, 2024",
+    "title": "Beso en mis brazos",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1JQ9QEQOCRmvHe0Vl25LCLEaKFLYR356K/view?usp=sharing",
+    "date": "Dec 21, 2024",
+    "title": "Pista de Patinaje",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1EBTSkVn0h_xzMDjJ_7Ws--sszi6ETrUh/view?usp=sharing",
+    "date": "Dec 25, 2024",
+    "title": "Primera Navidad (mi casa)",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/17BoYRZcxvhsMLhE5fZ_AoC4elmqnuH0b/view?usp=sharing",
+    "date": "Dec 26, 2024",
+    "title": "Primera Navidad (tu casa)",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1FwEfSmZr56ddxYasD7V455tZjHFZdcuM/view?usp=sharing",
+    "date": "Jan 30, 2025",
+    "title": "Siempre juntos",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1rNSEx1soJazZNsDb5R8O9UgTBXnl8Pbs/view?usp=sharing",
+    "date": "Feb 15, 2025",
+    "title": "Mirando el horizonte",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1sxnyBrYPxqEkEZ8WiIG56rzqOd434VID/view?usp=sharing",
+    "date": "Feb 15, 2025",
+    "title": "Museo de Arte",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1f_dWRQsR99Mqzl0KM6RCJJw4k1ky-M3-/view?usp=sharing",
+    "date": "Mar 17, 2025",
+    "title": "Noche de acai",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1eCDVx2ehLcrPW7JuZybZuCWfJ7ffa-Ig/view?usp=sharing",
+    "date": "Mar 29, 2025",
+    "title": "Castillo Cerralles",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/16BkkhZZwO_lkL9x6J9JJAIgKqQ58Jmj4/view?usp=sharing",
+    "date": "Mar 29, 2025",
+    "title": "Pose legendaria",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1loh5odbAeLMst1Ph1kL6ETKLooCk4Iox/view?usp=sharing",
+    "date": "May 13, 2025",
+    "title": "Otro dia de acai",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1q9t0DZHtpqO9hTE3NUz7kRrWnRiwVJsi/view?usp=sharing",
+    "date": "Jun 11, 2025",
+    "title": "Graduacion de tu bachillerato",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1tQEEunsqj8DlDRVuwM-9DmoBV4USafy1/view?usp=sharing",
+    "date": "Jul 1, 2025",
+    "title": "Dia de boda",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1Ib72xAbR7SjzMZYZO7xOxsPu-AUcJlxq/view?usp=sharing",
+    "date": "Jul 21, 2025",
+    "title": "Museo de Arte Contemporanea",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1XuOzk1a6eMSBVmil82ucX5twmfeVaOQq/view?usp=sharing",
+    "date": "Jul 26, 2025",
+    "title": "Noche aleatoria en tu casa",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1uA3yzujEY8IFdMkqzS3vCFcKROzeThN2/view?usp=sharing",
+    "date": "Aug 8, 2025",
+    "title": "Restaurante en el techo",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1kaRfE8eSUt6V32ZLIrUtZI-Ka7BGdFdk/view?usp=sharing",
+    "date": "Sep 17, 2025",
+    "title": "Noche aleatoria en tu casa 2",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1jHHeaOO6x9clAijrucGliY9DkKLKSXYs/view?usp=sharing",
+    "date": "Sep 26, 2025",
+    "title": "Via Lactea",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1R4oYTgFELro3otWKH_vA7j1Fw9TTqNbt/view?usp=sharing",
+    "date": "Sep 28, 2025",
+    "title": "Tenis",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1fLeD_Kv9u6k4UyBeneQXjpFgZ2_vENat/view?usp=sharing",
+    "date": "Oct 12, 2025",
+    "title": "Mi vida dormida en mis brazos",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1SEn9lUvreiDrMrU0uhvSdN4lvccEvf8F/view?usp=sharing",
+    "date": "Oct 19, 2025",
+    "title": "Cumpleaños de tu abuelita",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1kaKGcJPH77js3qqsYeeM9bHzd_ok3zPw/view?usp=sharing",
+    "date": "Nov 10, 2025",
+    "title": "Sushi",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
+  },
+  {
+    "image": "https://drive.google.com/file/d/1hrUExtmYLU6-FeViET0IitUMawhZ-3sT/view?usp=sharing",
+    "date": "Nov 22, 2025",
+    "title": "Orquesta Sinfonica",
+    "subtitle": "",
+    "zoom": 1,
+    "offsetX": "50%",
+    "offsetY": "50%"
   }
 ]
