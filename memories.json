@@ -13,7 +13,7 @@
     "date": "Sep 22, 2024",
     "title": "Nuestra primera actividad creativa",
     "subtitle": "",
-    "zoom": 1,
+    "zoom": 0.5,
     "offsetX": "50%",
     "offsetY": "50%"
   },
@@ -22,15 +22,15 @@
     "date": "Sep 28, 2024",
     "title": "Primera visita al mirador como modelos",
     "subtitle": "",
-    "zoom": 1,
+    "zoom": 0.75,
     "offsetX": "50%",
     "offsetY": "50%"
   },
   {
     "image": "https://drive.google.com/file/d/1d6LskrnHdEkSJ4zL5xAUHWcpaA81IE5d/view?usp=sharing",
     "date": "Oct 13, 2024",
-    "title": "Nuestro primer restaurante (labios hinchados)",
-    "subtitle": "",
+    "title": "Primer Restaurante con Lip Filler",
+    "subtitle": "Despues de unos besitos, no te atrevias bajarte... porque algun labio por ahí estaba hinchado.",
     "zoom": 1,
     "offsetX": "50%",
     "offsetY": "50%"
@@ -38,8 +38,8 @@
   {
     "image": "https://drive.google.com/file/d/1RBjTuxQmGfSa1lXMnWm6qrfC4aLlS9kN/view?usp=sharing",
     "date": "Nov 5, 2024",
-    "title": "Bolera",
-    "subtitle": "",
+    "title": "Pela en la Bolera",
+    "subtitle": "No mentira jajaja, creo recordar ganar, pero no estoy 100% seguro, so fue un empate.",
     "zoom": 1,
     "offsetX": "50%",
     "offsetY": "50%"
@@ -47,9 +47,9 @@
   {
     "image": "https://drive.google.com/file/d/1wdphcbtCsbLzzdxr6cHCC9FyHkdlN4bd/view?usp=sharing",
     "date": "Nov 23, 2024",
-    "title": "Novios!",
-    "subtitle": "",
-    "zoom": 1,
+    "title": "Finalmente Novios!",
+    "subtitle": "Este día de tanto estrés con el mejor resultado EVEEEEER!",
+    "zoom": 0.5,
     "offsetX": "50%",
     "offsetY": "50%"
   },
@@ -57,7 +57,7 @@
     "image": "https://drive.google.com/file/d/1bjUl6raouT6TM4_KCKltiMVZEMVHwSDZ/view?usp=sharing",
     "date": "Nov 25, 2024",
     "title": "Faro y atardecer",
-    "subtitle": "",
+    "subtitle": "El atardecer en el Faro fue algo brutal, y después el restaurante vegano fue bien pero bien interesante!",
     "zoom": 1,
     "offsetX": "50%",
     "offsetY": "50%"
@@ -65,8 +65,8 @@
   {
     "image": "https://drive.google.com/file/d/1KxcUtUAr_ZlmfYFGLQ8P5BYD-13Zv3CL/view?usp=sharing",
     "date": "Dec 5, 2024",
-    "title": "Visita a Wendy's despues de dia de Capstone",
-    "subtitle": "",
+    "title": "Wendy's después de un Día de Capstone",
+    "subtitle": "El día que estuviste todo el día en la chocolatería, y yo feliz porque por lo menos estabas trabajando con algo manual e interesante en vez de con mil documentos.",
     "zoom": 1,
     "offsetX": "50%",
     "offsetY": "50%"
@@ -75,52 +75,52 @@
     "image": "https://drive.google.com/file/d/1Eq2JnU0R8w_3O9zQFD018tk6LjYNRDPT/view?usp=sharing",
     "date": "Dec 14, 2024",
     "title": "Visita a el Parque de las Ciencias",
-    "subtitle": "",
-    "zoom": 1,
+    "subtitle": "Un dia tan interesante jajaja, las fotos medias malitas en el río 💀, pero aquí nos vemos hermosos. Mi trigueñita hermosaaaaa!",
+    "zoom": 0.5,
     "offsetX": "50%",
     "offsetY": "50%"
   },
   {
     "image": "https://drive.google.com/file/d/1IuvLvCGbXJf0NP-E1mn4aVxZ-cfeDXLr/view?usp=sharing",
     "date": "Dec 20, 2024",
-    "title": "Beso en mis brazos",
-    "subtitle": "",
+    "title": "Beso en mis Brazos",
+    "subtitle": "Me encanta esta foto porque fue un día (de muchos) en el que nos vestimos igual sin planearlo.",
     "zoom": 1,
     "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetY": "40%"
   },
   {
     "image": "https://drive.google.com/file/d/1JQ9QEQOCRmvHe0Vl25LCLEaKFLYR356K/view?usp=sharing",
     "date": "Dec 21, 2024",
     "title": "Pista de Patinaje",
-    "subtitle": "",
+    "subtitle": "Tan caotico jajaja, esto fue un desastre pero bien divertido y competitivo jajaja. Nos caímos tanto! Recuerdo que tu te tratabas de levantar lo mas rapido posible y eso me mataba 😂",
     "zoom": 1,
     "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetY": "10%"
   },
   {
     "image": "https://drive.google.com/file/d/1EBTSkVn0h_xzMDjJ_7Ws--sszi6ETrUh/view?usp=sharing",
     "date": "Dec 25, 2024",
     "title": "Primera Navidad (mi casa)",
-    "subtitle": "",
+    "subtitle": "Una foto tan icónica, celebrando navidad juntos por primera vez 🥹",
     "zoom": 1,
     "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetY": "10%"
   },
   {
     "image": "https://drive.google.com/file/d/17BoYRZcxvhsMLhE5fZ_AoC4elmqnuH0b/view?usp=sharing",
     "date": "Dec 26, 2024",
     "title": "Primera Navidad (tu casa)",
-    "subtitle": "",
+    "subtitle": "Esta foto es tan cute, y tu trajeeeee tan CUUUUUUUUTE! Con los vibes de Navidad, lo amo!",
     "zoom": 1,
     "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetY": "0%"
   },
   {
     "image": "https://drive.google.com/file/d/1FwEfSmZr56ddxYasD7V455tZjHFZdcuM/view?usp=sharing",
     "date": "Jan 30, 2025",
-    "title": "Siempre juntos",
-    "subtitle": "",
+    "title": "Siempre Juntos",
+    "subtitle": "Recuerdo salir del trabajo para ir a verte y pasar un ratito con mi amada. Despues dentro de un ratito, tenías sueño y te qudaste dormida en mi hombro... recuerdo estar tan feliz de poder acompañarte en momentos así ❤️",
     "zoom": 1,
     "offsetX": "50%",
     "offsetY": "50%"
@@ -129,8 +129,8 @@
     "image": "https://drive.google.com/file/d/1rNSEx1soJazZNsDb5R8O9UgTBXnl8Pbs/view?usp=sharing",
     "date": "Feb 15, 2025",
     "title": "Mirando el horizonte",
-    "subtitle": "",
-    "zoom": 1,
+    "subtitle": "Una foto tan aesthetic jajaja, no sé cómo lo hicimos que quedara tan brutal pero wow.",
+    "zoom": 0.5,
     "offsetX": "50%",
     "offsetY": "50%"
   },
@@ -138,17 +138,17 @@
     "image": "https://drive.google.com/file/d/1sxnyBrYPxqEkEZ8WiIG56rzqOd434VID/view?usp=sharing",
     "date": "Feb 15, 2025",
     "title": "Museo de Arte",
-    "subtitle": "",
+    "subtitle": "Dos modelos saliendo de un museo, es como si el arte hubiese tomado vida.",
     "zoom": 1,
     "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetY": "40%"
   },
   {
     "image": "https://drive.google.com/file/d/1f_dWRQsR99Mqzl0KM6RCJJw4k1ky-M3-/view?usp=sharing",
     "date": "Mar 17, 2025",
-    "title": "Noche de acai",
-    "subtitle": "",
-    "zoom": 1,
+    "title": "Noche de Açaí",
+    "subtitle": "Esta foto es tan cuuuute, y por la noche jajaja, se ve todo tan clarito, teniamos que estar super blasting ese flash jajaja, pero nos vemos tan nice 🥹, me gusta ese spot 🙂‍↕️",
+    "zoom": 0.5,
     "offsetX": "50%",
     "offsetY": "50%"
   },
@@ -156,25 +156,25 @@
     "image": "https://drive.google.com/file/d/1eCDVx2ehLcrPW7JuZybZuCWfJ7ffa-Ig/view?usp=sharing",
     "date": "Mar 29, 2025",
     "title": "Castillo Cerralles",
-    "subtitle": "",
+    "subtitle": "Me da risa que hay un detalle que no se ve aquí, pero tu y yo sabemos cual es jajaja, y nos vemos hermosos, como siempre.",
     "zoom": 1,
     "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetY": "40%"
   },
   {
     "image": "https://drive.google.com/file/d/16BkkhZZwO_lkL9x6J9JJAIgKqQ58Jmj4/view?usp=sharing",
     "date": "Mar 29, 2025",
-    "title": "Pose legendaria",
-    "subtitle": "",
+    "title": "Pose Legendaria",
+    "subtitle": "En el Castillo aprovechamos los alrededores y wow, esta me encanta, no se por qué mi pelo se ve así, pero tan cuuuuute!",
     "zoom": 1,
     "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetY": "80%"
   },
   {
     "image": "https://drive.google.com/file/d/1loh5odbAeLMst1Ph1kL6ETKLooCk4Iox/view?usp=sharing",
     "date": "May 13, 2025",
-    "title": "Otro dia de acai",
-    "subtitle": "",
+    "title": "Otro Día de Açaí",
+    "subtitle": "Amo nosotros con nuestra vestimenta similar, y el color es un match perfecto, quiero un beso tuyo, o dame dos... mas.",
     "zoom": 1,
     "offsetX": "50%",
     "offsetY": "50%"
@@ -182,44 +182,44 @@
   {
     "image": "https://drive.google.com/file/d/1q9t0DZHtpqO9hTE3NUz7kRrWnRiwVJsi/view?usp=sharing",
     "date": "Jun 11, 2025",
-    "title": "Graduacion de tu bachillerato",
-    "subtitle": "",
+    "title": "Graduación de tu Bachillerato",
+    "subtitle": "Está brutal haber podido estar ahí ese día, y haber podido compartir un día tan importante desde tan tempranito!",
     "zoom": 1,
-    "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetX": "60%",
+    "offsetY": "30%"
   },
   {
     "image": "https://drive.google.com/file/d/1tQEEunsqj8DlDRVuwM-9DmoBV4USafy1/view?usp=sharing",
     "date": "Jul 1, 2025",
     "title": "Dia de boda",
-    "subtitle": "",
+    "subtitle": "Este día que conociste a la familia por el lado de papi, lo amé tanto poder tenerte ahí a mi lado.",
     "zoom": 1,
-    "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetX": "60%",
+    "offsetY": "30%"
   },
   {
     "image": "https://drive.google.com/file/d/1Ib72xAbR7SjzMZYZO7xOxsPu-AUcJlxq/view?usp=sharing",
     "date": "Jul 21, 2025",
     "title": "Museo de Arte Contemporanea",
-    "subtitle": "",
+    "subtitle": "Este museo que estuvo medio meh jajaja, pero contigo todo es mas fun.",
     "zoom": 1,
     "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetY": "0%"
   },
   {
     "image": "https://drive.google.com/file/d/1XuOzk1a6eMSBVmil82ucX5twmfeVaOQq/view?usp=sharing",
     "date": "Jul 26, 2025",
-    "title": "Noche aleatoria en tu casa",
-    "subtitle": "",
-    "zoom": 1,
+    "title": "Noche Aleatoria en tu Casa",
+    "subtitle": "Por alguna razón esta foto me gusta mucho.",
+    "zoom": 0.5,
     "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetY": "30%"
   },
   {
     "image": "https://drive.google.com/file/d/1uA3yzujEY8IFdMkqzS3vCFcKROzeThN2/view?usp=sharing",
     "date": "Aug 8, 2025",
-    "title": "Restaurante en el techo",
-    "subtitle": "",
+    "title": "Restaurante en el Techo",
+    "subtitle": "La comida media meh jajaja, pero la vista y la experiencia era otra cosa, nunca había estado en algun sitio así. Nuevas Experiencias contigo 🥹",
     "zoom": 1,
     "offsetX": "50%",
     "offsetY": "50%"
@@ -227,26 +227,26 @@
   {
     "image": "https://drive.google.com/file/d/1kaRfE8eSUt6V32ZLIrUtZI-Ka7BGdFdk/view?usp=sharing",
     "date": "Sep 17, 2025",
-    "title": "Noche aleatoria en tu casa 2",
-    "subtitle": "",
+    "title": "Noche Aleatoria en tu Casa 2",
+    "subtitle": "Una foto cute que tu mamá nos tomó, muy candida, nosostros juntos y riendonos como siempre!",
     "zoom": 1,
     "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetY": "60%"
   },
   {
     "image": "https://drive.google.com/file/d/1jHHeaOO6x9clAijrucGliY9DkKLKSXYs/view?usp=sharing",
     "date": "Sep 26, 2025",
     "title": "Via Lactea",
-    "subtitle": "",
+    "subtitle": "Me encantó comer estos mantecados, es un sitio al que TENEMOS que volveeeer, buenisima idea corazón mío. Recuerdo que pedí uno tan grande que tuvimos que comerlo entre los dos jajaja.",
     "zoom": 1,
-    "offsetX": "50%",
+    "offsetX": "60%",
     "offsetY": "50%"
   },
   {
     "image": "https://drive.google.com/file/d/1R4oYTgFELro3otWKH_vA7j1Fw9TTqNbt/view?usp=sharing",
     "date": "Sep 28, 2025",
-    "title": "Tenis",
-    "subtitle": "",
+    "title": "Día de Tenis",
+    "subtitle": "Este ejercicio es excelente, en nuestra futura casa necesitamos una pequeña canchita 😂",
     "zoom": 1,
     "offsetX": "50%",
     "offsetY": "50%"
@@ -254,17 +254,17 @@
   {
     "image": "https://drive.google.com/file/d/1fLeD_Kv9u6k4UyBeneQXjpFgZ2_vENat/view?usp=sharing",
     "date": "Oct 12, 2025",
-    "title": "Mi vida dormida en mis brazos",
-    "subtitle": "",
-    "zoom": 1,
+    "title": "Mi Vida Dormida en mis Brazos",
+    "subtitle": "Amo estos días en los que te puedo acariciar hasta que te quedes dormida descansando en mi 🥹 LO AMOOOOOOOO!!!",
+    "zoom": 0.5,
     "offsetX": "50%",
     "offsetY": "50%"
   },
   {
     "image": "https://drive.google.com/file/d/1SEn9lUvreiDrMrU0uhvSdN4lvccEvf8F/view?usp=sharing",
     "date": "Oct 19, 2025",
-    "title": "Cumpleaños de tu abuelita",
-    "subtitle": "",
+    "title": "Cumpleaños de tu Abuelita",
+    "subtitle": "(y de mi abuelita tambien jaja) Este día el sitio pues... era por tu abuela jajaja, pero hubieron momentos nice como este!",
     "zoom": 1,
     "offsetX": "50%",
     "offsetY": "50%"
@@ -272,8 +272,8 @@
   {
     "image": "https://drive.google.com/file/d/1kaKGcJPH77js3qqsYeeM9bHzd_ok3zPw/view?usp=sharing",
     "date": "Nov 10, 2025",
-    "title": "Sushi",
-    "subtitle": "",
+    "title": "Sushi en la Ciudad",
+    "subtitle": "Buen spot de sushi, en el que no usamos soy sauce jajaja no entiendo por qué, y despues papitas! Un día de mucha pavera 😂 siempre tan fun contigo",
     "zoom": 1,
     "offsetX": "50%",
     "offsetY": "50%"
@@ -282,9 +282,9 @@
     "image": "https://drive.google.com/file/d/1hrUExtmYLU6-FeViET0IitUMawhZ-3sT/view?usp=sharing",
     "date": "Nov 22, 2025",
     "title": "Orquesta Sinfonica",
-    "subtitle": "",
+    "subtitle": "Una noche inolvilable en la que mi amada compró tickets para la orquesta, y fue algo tan brutal. Poder experimentar algo como esto contigo, por primera vez, lo amo y lo recordaré siempre.",
     "zoom": 1,
     "offsetX": "50%",
-    "offsetY": "50%"
+    "offsetY": "40%"
   }
 ]
