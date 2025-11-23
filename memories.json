@@ -86,7 +86,7 @@
     "title": "Beso en mis Brazos",
     "subtitle": "Me encanta esta foto porque fue un día (de muchos) en el que nos vestimos igual sin planearlo.",
     "zoom": 1,
-    "offsetX": "20%",
+    "offsetX": "0%",
     "offsetY": "55%"
   },
   {
@@ -103,9 +103,9 @@
     "date": "Dec 25, 2024",
     "title": "Primera Navidad (mi casa)",
     "subtitle": "Una foto tan icónica, celebrando navidad juntos por primera vez 🥹",
-    "zoom": 1.1,
+    "zoom": 1.2,
     "offsetX": "100%",
-    "offsetY": "10%"
+    "offsetY": "15%"
   },
   {
     "image": "https://drive.google.com/file/d/17BoYRZcxvhsMLhE5fZ_AoC4elmqnuH0b/view?usp=sharing",
@@ -140,7 +140,7 @@
     "title": "Museo de Arte",
     "subtitle": "Dos modelos saliendo de un museo, es como si el arte hubiese tomado vida.",
     "zoom": 1,
-    "offsetX": "68%",
+    "offsetX": "70%",
     "offsetY": "20%"
   },
   {
@@ -184,16 +184,16 @@
     "date": "Jun 11, 2025",
     "title": "Graduación de tu Bachillerato",
     "subtitle": "Está brutal haber podido estar ahí ese día, y haber podido compartir un día tan importante desde tan tempranito!",
-    "zoom": 1,
-    "offsetX": "10%",
-    "offsetY": "65%"
+    "zoom": 1.1,
+    "offsetX": "0%",
+    "offsetY": "60%"
   },
   {
     "image": "https://drive.google.com/file/d/1tQEEunsqj8DlDRVuwM-9DmoBV4USafy1/view?usp=sharing",
     "date": "Jul 1, 2025",
     "title": "Dia de boda",
     "subtitle": "Este día que conociste a la familia por el lado de papi, lo amé tanto poder tenerte ahí a mi lado.",
-    "zoom": 1,
+    "zoom": 1.1,
     "offsetX": "100%",
     "offsetY": "25%"
   },
