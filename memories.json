@@ -86,7 +86,7 @@
     "title": "Beso en mis Brazos",
     "subtitle": "Me encanta esta foto porque fue un día (de muchos) en el que nos vestimos igual sin planearlo.",
     "zoom": 1,
-    "offsetX": "35%",
+    "offsetX": "30%",
     "offsetY": "55%"
   },
   {
@@ -104,7 +104,7 @@
     "title": "Primera Navidad (mi casa)",
     "subtitle": "Una foto tan icónica, celebrando navidad juntos por primera vez 🥹",
     "zoom": 1,
-    "offsetX": "90%",
+    "offsetX": "100%",
     "offsetY": "10%"
   },
   {
@@ -113,7 +113,7 @@
     "title": "Primera Navidad (tu casa)",
     "subtitle": "Esta foto es tan cute, y tu trajeeeee tan CUUUUUUUUTE! Con los vibes de Navidad, lo amo!",
     "zoom": 1,
-    "offsetX": "65%",
+    "offsetX": "70%",
     "offsetY": "20%"
   },
   {
@@ -140,7 +140,7 @@
     "title": "Museo de Arte",
     "subtitle": "Dos modelos saliendo de un museo, es como si el arte hubiese tomado vida.",
     "zoom": 1,
-    "offsetX": "67%",
+    "offsetX": "68%",
     "offsetY": "20%"
   },
   {
@@ -185,7 +185,7 @@
     "title": "Graduación de tu Bachillerato",
     "subtitle": "Está brutal haber podido estar ahí ese día, y haber podido compartir un día tan importante desde tan tempranito!",
     "zoom": 1,
-    "offsetX": "30%",
+    "offsetX": "20%",
     "offsetY": "65%"
   },
   {
@@ -194,7 +194,7 @@
     "title": "Dia de boda",
     "subtitle": "Este día que conociste a la familia por el lado de papi, lo amé tanto poder tenerte ahí a mi lado.",
     "zoom": 1,
-    "offsetX": "80%",
+    "offsetX": "90%",
     "offsetY": "25%"
   },
   {
@@ -238,7 +238,7 @@
     "date": "Sep 26, 2025",
     "title": "Via Lactea",
     "subtitle": "Me encantó comer estos mantecados, es un sitio al que TENEMOS que volveeeer, buenisima idea corazón mío. Recuerdo que pedí uno tan grande que tuvimos que comerlo entre los dos jajaja.",
-    "zoom": 1,
+    "zoom": 1.25,
     "offsetX": "100%",
     "offsetY": "50%"
   },
@@ -248,7 +248,7 @@
     "title": "Día de Tenis",
     "subtitle": "Este ejercicio es excelente, en nuestra futura casa necesitamos una pequeña canchita 😂",
     "zoom": 1,
-    "offsetX": "80%",
+    "offsetX": "100%",
     "offsetY": "50%"
   },
   {
